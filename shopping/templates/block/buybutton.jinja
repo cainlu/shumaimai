@@ -1,0 +1,36 @@
+<link href="{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" op="combine" />
+<link href="{{ STATIC_URL }}css/buybutton.css" rel="stylesheet" type="text/css" op="combine" />
+
+{% if books %}
+<div id="book-list-footer">
+	<form id="buyinfo{{ book.id }}" method="post" action="{{ url('search') }}" class="shopping-buy-form">
+	{% csrf_token %}
+		<span class="num-label">数量:</span>
+		<input type="text" value="1" maxLength="2" class="num required digits" min="1" max="99" id="booknum{{ book.id }}">
+		<input class="shoppingbutton" type="button" value="放入购物车" onClick="cookiebuy({{ book.id }})">
+		<input type=hidden id="bookid{{ book.id }}" value={{ book.id }}>
+		<input type=hidden id="bookname{{ book.id }}" value={{ book.name }}>
+		<input type=hidden id="bookauthor{{ book.id }}" value={{ book.author }}>
+		<input type=hidden id="bookprice{{ book.id }}" value={{ book.price_old }}>
+		<input type=hidden id="bookpublisher{{ book.id }}" value={{ book.press }}>
+		<input type=hidden id="bookisbn{{ book.id }}" value={{ book.isbn }}>
+	</form>
+</div>
+{% else %}
+<div id="search-result-footer">
+	<form class="validateForm" id="buyinfo0" method="post" action="{{ url('search') }}">
+	{% csrf_token %}
+		<span class="num-label">我要买:</span>
+		<input type=button class="numbutton" onClick="buynummin()" value="—"/>
+		<input type="text" value="1" maxLength="2" class="num required digits" min="1" max="99" id="booknum0">
+		<input type=button class="numbutton" onClick="buynumadd()" value="+"/>
+		<input id="shoppingbutton" class="shoppingbutton" type="button" value="放入购物车" onClick="cookiebuy(0)">
+		<input type=hidden id="bookid0" value={{ book.id }}>
+		<input type=hidden id="bookname0" value={{ book.name }}>
+		<input type=hidden id="bookauthor0" value={{ book.author }}>
+		<input type=hidden id="bookprice0" value={{ book.price_old }}>
+		<input type=hidden id="bookpublisher0" value={{ book.press }}>
+		<input type=hidden id="bookisbn0" value={{ book.isbn }}>
+	</form>
+</div>
+{% endif %}

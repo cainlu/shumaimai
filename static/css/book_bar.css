@@ -1,0 +1,24 @@
+.book-bar {
+    padding:10px;
+}
+
+.book-bar-head {
+    text-align:left;
+    color:#d9ac09;
+    font-weight:bold;
+    font-size:25px;
+    padding-left:10px;
+}
+
+.book-bar-main {
+    border-top: 1px solid #795B3C;
+    border-bottom: 1px solid #795B3C;
+    text-align:center;
+}
+
+.book-bar .book-brief {
+    display:inline-block;
+    *display:inline;
+}
+
+

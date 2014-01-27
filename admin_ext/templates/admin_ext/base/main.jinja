@@ -1,0 +1,82 @@
+{% extends "admin_ext/base/base.jinja" %}
+
+{% block body %}
+<link href="{{ STATIC_URL }}css/admin_ext/main.css" rel="stylesheet">
+<script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/main.js"></script>
+{% if user.is_authenticated() and user.is_active and user.is_staff %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">书麦麦</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li id="nav-home"><a href="{{ url('admin_home') }}">首页</a></li>
+                    <li id="nav-book"><a href="{{ url('admin_book_home') }}">书本</a></li>
+                    {% if user.is_superuser %}
+                    <li id="nav-order"><a href="{{ url('admin_order_home') }}">订单</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="nav-login pull-right">
+                <div class="btn-group">
+                    <div class="btn btn-link" data-toggle="dropdown">
+                        <i class="icon-user icon-white"></i>
+                        <span>{{ string(' ', user, '   ') }}</span>
+                        <i class="icon-chevron-down icon-white"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('admin_logout') }}"><i class="icon-off"></i>{{ string(" Logout") }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-body" class="container main-content">
+    {% if messages %}
+        {% for message in messages %}
+            {% if message['type'] == 'success' %}
+                {% set msg_type_css = 'alert-success' %}
+                {% set msg_header = '成功!' %}
+                {% set msg_content = message['content'] %}
+            {% elif message['type'] == 'warning' %}
+                {% set msg_type_css = '' %}
+                {% set msg_header = '警告!' %}
+                {% set msg_content = message['content'] %}
+            {% elif message['type'] == 'error' %}
+                {% set msg_type_css = 'alert-error' %}
+                {% set msg_header = '错误!' %}
+                {% set msg_content = message['content'] %}
+            {% else %}
+                {% set msg_type_css = 'alert-info' %}
+                {% set msg_header = '信息' %}
+                {% if message['content'] %}
+                    {% set msg_content = message['content'] %}
+                {% else %}
+                    {% set msg_content = message %}
+                {% endif %}
+            {% endif %}
+            {% if not is_instance(msg_content, 'list') %}
+            {% set msg_content = [msg_content] %}
+            {% endif %}
+            <div class="alert alert-block {{ msg_type_css }}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>{{ msg_header }}</h4>
+                {% for c in msg_content  %}
+                <p>{{ c }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% block main %} {% endblock %}
+</div>
+{% else %}
+<script type="text/javascript">
+    $(document).ready(function(){
+            window.location.href="{{ url('admin_login') }}";
+    });
+</script>
+{% endif %}
+{% endblock %}
+
+

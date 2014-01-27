@@ -1,0 +1,51 @@
+.yellowbutton{
+	background-color:#F48C19;
+	border:1px solid #F48C19;
+	border-radius:5px 5px 5px 5px;
+	color:#FFFFFF;
+	font-family:"Trebuchet MS", sans-serif;
+	box-shadow:1 0 1px #00CCFF, 0 0 1px #FFFFFF inset;
+	cursor: pointer;
+	padding:5px;
+}
+
+.graybutton{
+	background-color:rgb(195,195,195);
+	border:1px solid rgb(153,153,153);
+	border-radius:5px 5px 5px 5px;
+	color:#FFFFFF;
+	font-family:"Trebuchet MS", sans-serif;
+	box-shadow:1 0 1px #00CCFF, 0 0 1px #FFFFFF inset;
+	cursor: pointer;
+	padding:5px;
+}
+
+.sellingbutton{
+	height:35px;
+	width:100px;
+	border:0;
+	cursor: pointer;
+	color:#FFFFFF;
+	font-size:12pt;
+	font-weight:600;
+	background-image:url(images/sellingbutton.png);
+}
+
+.sellingbutton:hover{
+	background-image:url(images/shoppinghover.png);
+}
+
+.shoppingbutton{
+	height:35px;
+	width:100px;
+	border:0;
+	cursor: pointer;
+	color:#FFFFFF;
+	font-size:12pt;
+	font-weight:600;
+	background-image:url(images/shoppingbutton.png);
+}
+
+.shoppingbutton:hover{
+	background-image:url(images/shoppinghover.png);
+}

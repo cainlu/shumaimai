@@ -1,0 +1,321 @@
+/*** fixed frame ***/
+#fixed-frame {
+    left: 0;
+    top: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+    margin: auto;
+    padding: auto;
+    font-size:13px;
+    color:#FFFFFF;
+}
+
+#fixed-frame a {
+    color:#FFFFFF;
+}
+
+#fixed-frame a:hover {
+    color:#FFFFFF !important;
+}
+
+#fixed-frame span{
+    vertical-align:top;
+}
+
+#fixed-frame-first {
+    background-color:#F48C19;
+    background-repeat:repeat-x;
+    width:100%;
+    height:35px;
+    vertical-align:center;
+}
+
+.menu-head-normal {
+    background-color:#F48C19;
+    color:#FFFFFF;
+}
+
+.menu-head-normal a{
+    color:#FFFFFF;
+}
+
+.menu-head-visited {
+    background-color:#FFFFFF;
+    color:#F48C19 !important;
+}
+
+.menu-head-visited a{
+    color:#F48C19 !important;
+}
+
+#fixed-frame-first-main {
+    position:relative;
+    margin:0px;
+    padding:0px;
+    display:inline-block;
+    *display:inline; 
+    vertical-align:bottom;
+    height:33px;
+    line-height:33px;
+    background-color:#F48C19;
+    width: 1000px;
+    text-align:left;
+    font-size:14px;
+    z-index:10;
+    border-bottom:2px solid #282828;
+}
+
+#ff-log {
+    margin:auto;
+    height:33px;
+    text-align:center;
+    width: 150px;
+    vertical-align:bottom;
+    float:left;
+    margin-left:20px;
+}
+
+.ff-big {
+    display:inline-block;
+    *display:inline; 
+    font-size:15px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.ff-small {
+    display:inline-block;
+    *display:inline; 
+    font-size:10px;
+    margin-left:1px;
+    margin-right:1px;
+}
+
+#ff-phone {
+    float:right;
+}
+
+#ff-order {
+    cursor:pointer;
+    font-size:13px;
+    padding-left:5px;
+    padding-right:5px;
+    float:right;
+}
+
+.ff-sep {
+    color:white;
+    padding:0px;
+    margin:0px;
+    float:right;
+}
+
+#ff-sc {
+    cursor: pointer;
+    font-size:13px;
+    padding:2px 5px 0px 5px;
+    background-repeat:repeat-x;
+    float:right;
+    margin-right:50px;
+}
+
+
+#fixed-frame-border {
+    width:100%;
+    background-color:#282828;
+    height:2px;
+    position:relative;
+    top:-2px;
+    z-index:0;
+}
+
+
+#fixed-frame-second {
+    width:100%;
+    opacity:1;
+    display:none;
+}
+
+#ff-sc-ani {
+    position:fixed;
+    z-index:99999;
+    text-align:center;
+    display:none;
+    left:50%;
+}
+
+.ff-shopping-cart-detail {
+    background-color: #FFFFFF;
+    text-align:left;
+    color:#000000;
+    padding: auto;
+    margin: auto;
+    width: 1000px;
+    border-left:2px solid black;
+    border-right:2px solid black;
+}
+
+.ff-sc-detail-table {
+    border-collapse:collapse;
+    width:100%;
+    text-align:center;
+    font: 16px/1.4em Verdana,sans-serif;
+}
+
+.ff-sc-detail-table th{
+    padding:10px 2px;
+    font: 20px/1.4em Verdana,sans-serif;
+}
+
+.bottomline{
+    border-bottom:3px solid rgb(244,140,25);
+}
+
+.first-td{
+    text-align:left;
+}
+
+.order-line{
+    margin: auto;
+    width: 1000px;
+    text-align:left;
+    color:black;
+    background-color:white;
+    border-left:2px solid black;
+    border-right:2px solid black;
+}
+
+#order-line1{
+    text-align:right;
+    font: 14px/1.4em Verdana,sans-serif;
+}
+
+#order-line2{
+    background-color:rgb(255,233,202);
+}
+
+#order-line3{
+    background-color:rgb(255,233,202);
+    border-bottom:2px solid black;
+}
+
+#user-detail{
+    display:inline-block;
+    *display:inline; 
+    width: 650px;
+}
+
+.carlabel{
+    display:inline-block;
+    width:8%;
+    float:left;
+}
+
+.num-wrapper button {
+    vertical-align:middle;
+    padding:0px;
+    padding-left:3px;
+    padding-right:3px;
+    margin:0px;
+}
+
+.numbutton{
+    background-color:white;
+    border:1px solid gray;
+    border-radius:5px 5px 5px 5px;
+    color:black;
+    font-family:"Trebuchet MS", sans-serif;
+    box-shadow:1 0 1px #00CCFF, 0 0 1px #FFFFFF inset;
+    cursor: pointer;
+    width:25px;
+}
+
+#sc-blank{
+    border-bottom:2px solid black;
+    padding:12px 0 12px 0;
+    text-align:center;
+}
+
+#sc-blank1{
+    font-size:18px;
+    font-family: "Microsoft YaHei" ! important;
+}
+
+#sc-blank2{
+    font-size:14px;
+    font-weight:bold;
+}
+
+#behalf-message{
+    font-size:13px;
+    font-family: "Microsoft YaHei" ! important;
+}
+
+.sc_up_img{
+	position:fixed;
+	z-index:100;
+	height:50px;
+	width:40px;
+	top:300px;
+	display:none;
+}
+
+#sc_up_img1{
+	right:15%;
+}
+
+#sc_up_img2{
+	right:18%;
+}
+
+#sc_up_img3{
+	right:21%;
+}
+
+#sc_score_img{
+	padding:0 45px 0 0;
+}
+
+#order-line3 a{
+	color:blue;
+}
+
+#unregister-label{
+	width:32%;
+	font-weight:600;
+	padding: 7px 0 0 0;
+}
+
+#clearfont{
+	cursor:pointer;
+	text-decoration:underline;
+}
+
+#continuefont{
+	cursor:pointer;
+	position:relative;
+	left:6%;
+	top:11px;
+	font-size:14px;
+	font-weight:800;
+	text-decoration:underline;
+}
+
+#shoppingbuttonsmall{
+	position:relative;
+	left:4%;
+	height:31px;
+	width:93px;
+	border:0;
+	cursor: pointer;
+	color:#FFFFFF;
+	font-size:12pt;
+	font-weight:600;
+	background-image:url(images/shoppingbutton2.png);
+}
+
+#order-info{
+	margin:0px;
+}

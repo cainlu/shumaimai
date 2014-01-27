@@ -1,0 +1,99 @@
+{% extends "base/base.jinja" %}
+
+{% block head %}
+<link href="{{ STATIC_URL }}css/advertise.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/advertise.js"></script>
+{% endblock %}
+
+{% block readyJS %}
+{% for top in topFive %}
+    $('#thFive{{top.id}}').mouseover(function() {
+        $('#thFive{{top.id}}').css('cursor', 'pointer');
+        $('#imgFive{{top.id}}').hide();
+        $('#divFive{{top.id}}').show();
+    });
+    $('#thFive{{top.id}}').mouseleave(function() {
+        $('#divFive{{top.id}}').hide();
+        $('#imgFive{{top.id}}').show();
+    });
+{% endfor %}
+{% endblock %}
+
+{% block content_main %}
+<div id='ad_top'>
+    <img id='img_top' src="{{ STATIC_URL }}image/topshow{{activity}}.jpg">
+</div>
+<div id='ad_middle'>
+    <div class='ad_text'>雷锋日记2013</div>
+    <hr>
+    <table id='top_table'>
+        <tr>
+            {% for top in topFive %}
+                <th class='thFive' id='thFive{{top.id}}' onclick='advertise_url({{top.id}})'>
+                    <div id='imgFive{{top.id}}' class='divFive'><img src="{{ STATIC_URL }}image/lf{{loop.index}}.jpg" class='imgFive'></div>
+                    <div id='divFive{{top.id}}' style='display:none' class='divFive'>{{top.context}}</div>
+                </th>
+            {% endfor %}
+        </tr>
+    </table>
+    <br>
+    <div class='ad_text'><img src="{{ STATIC_URL }}image/middleshow{{activity}}.jpg" id='img_middle'></div>
+    <br>
+</div>
+<table id='ad_downtable'>
+    <tr>
+        <th id='ad_leftdown' colspan=4>
+            <span class='ad_text'>好人好事happening</span>
+            <span id='add_text'>在活动结束时，获得赞美和支持多的活动举办方将会有神秘大奖哦！</span>
+            <hr>
+        </th>
+        <th id='ad_rightdown'>
+            <span class='ad_text'>雷锋奉献的一生</span>
+            <hr>
+        </th>
+    </tr>
+    {% for advertise in advertises %}
+        <tr>
+            <td class='td_leftdown' rowspan=3>
+                <img src="{{ STATIC_URL }}image/ad{{advertise.id}}.jpg" class='ad_left_img'>
+            </td>
+            <td colspan=3>
+                <a href='/advertise/commentshow/?advertiseid={{advertise.id}}'>
+                    {{advertise.title}}
+                </a>
+            </td>
+            {% if loop.first %}
+                <td rowspan=99999 id='lf_context'>
+                    <div>雷锋的一生只经历过22个花开的季节，可是他的模范事迹和高尚思想却在军内外产生巨大影响。1963年1月7日，中华人民共和国国防部命名他生前所在班为“雷锋班”。毛泽东、周恩来、刘少奇、朱德、陈云、林彪、邓小平等党和国家领导人为之题词。中国人民解放军总政治部、中国共产主义青年团中央委员会、中华全国总工会和中华全国妇女联合会先后发出向雷锋学习的号召。<a onclick='window.open("http://baike.baidu.com/view/1753.htm")' id='lf_text'>查看全部</a></div>
+                    <br>
+                    <span class='ad_text'>留言板</span>
+                    {% include 'block/message.jinja' %}
+                </td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td class='author'>
+                {{advertise.author}}
+            </td>
+            <td colspan=2 class='td_leftmiddle2'>
+                <div class='div_leftmiddle'>
+                    <a onclick='ajaxAgree({{advertise.id}})' class='agreeA agree{{advertise.id}}'>
+                    赞美他[{{advertise.agree}}]</a>
+                    <a onclick='ajaxDisagree({{advertise.id}})' class='disagreeA disagree{{advertise.id}}'>
+                    学习他[{{advertise.disagree}}]</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=3 class='td_leftmiddle'><div class='td_leftdown2'>{{advertise.context}}</div></td>
+        </tr>
+        <tr height='20px'/>
+    {% endfor %}
+    <tr id='more1' onclick='ajaxMore("{{activity}}", "1")'>
+        <td colspan=4>
+            <input type="button" value="查看更多" class='morebutton'>
+        </td>
+    </tr>
+    <tr id='blank1' height='1500px'/>
+</table>
+{% endblock %}

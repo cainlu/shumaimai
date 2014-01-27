@@ -1,0 +1,20 @@
+{% extends "admin_ext/base/order_base.jinja" %}
+
+{% block order_active_nav %}#order-nav-download{% endblock %}
+
+{% block order_main %}
+<div class="container">
+    <legend><strong>{{ string('下载订单') }}</strong></legend>
+    <form id="order-download-form" class="form-horizontal main-form" method="post" action="{{ url('admin_order_download') }}">
+        {% csrf_token %}
+        <fieldset>
+            {{ order_download_form.as_bs_horizontal_form() }}
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" class="btn btn-primary btn-large" value="下载" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPEhtml>
+<html>
+    <head>
+        <title>书麦麦</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="锐科电子商务有限公司 书麦麦">
+        <meta name="author" content="Cula">
+        {% block head %}{% endblock %}
+
+        {% compress css %}
+        <link href="{{ STATIC_URL }}css/admin_ext/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/admin_ext/bootstrap-responsive.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/admin_ext/datetimepicker.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/admin_ext/bootstrap-fileupload.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/admin_ext/chosen.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/admin_ext/base.css" rel="stylesheet">
+        {% endcompress %}
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/jquery.cookie.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/jquery.json-2.4.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/bootbox.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/bootstrap-fileupload.min.js"></script>
+        {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/chosen.jquery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/admin_ext/base.js"></script>
+        {% endcompress %}
+
+        <script type="text/javascript">
+            $(function(){
+                    $('{% block active_nav %}#nav-home{% endblock %}').addClass('active');
+            });
+        </script>
+
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

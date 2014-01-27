@@ -1,0 +1,57 @@
+<link href = "{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" />
+<link href = "{{ STATIC_URL }}css/sell.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cookie.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/base.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/sell.js"></script>
+<script language="javascript" type="text/javascript">
+	$(document).ready(function() {
+		{% if user.is_authenticated() %}
+			{% if user.get_profile().phone %}
+				$('#sellphone').val('{{ user.get_profile().phone }}');
+			{% else %}
+			    var phone = $.cookie('phone');
+                $('#sellphone').val(phone);
+			{% endif %}
+			{% if user.get_profile().address %}
+				$('#selladdress').val('{{ user.get_profile().address }}');
+			{% else %}
+			    var address = $.cookie('address');
+                $('#selladdress').val(address);
+			{% endif %}
+		{% else %}
+			var phone = $.cookie('phone');
+			var address = $.cookie('address');
+			$('#sellphone').val(phone);
+			$('#selladdress').val(address);
+		{% endif %}
+	});
+</script>
+<div id="topdiv">
+	<font size=5>我要卖书</font>
+	<img id='closeimg' src="{{ STATIC_URL }}image/close_frame.png" onclick='closesellframe()'>
+</div>
+<br>
+<div id="centerdiv">
+	<br>
+	<table>
+	    <form id="sell-info" method="post" action="{{ url('selling') }}" target='_parent'>
+	    {% csrf_token %}
+		<tr><td><font size=3>联系电话</font><sup><font color="red">*</font></sup></tr></td>
+		<tr><td><input type="text" id='sellphone' name="sellformphone" class='sellinput' style='width:300px;' maxlength=100></tr></td>
+		<tr><td><font size=3>收书地址</font><sup><font color="red">*</font></sup></tr></td>
+		<tr><td><input type="text" id='selladdress' name="sellformaddress" class='sellinput' style='width:300px;' maxlength=100 placeholder="例如：上海海事大学42号楼"></tr></td>
+		<tr><td><font size=3>备注</font><br></tr></td>
+		<tr><td><input type="text" id='sellremark' name="sellformremark" class='sellinput' style='width:300px;' maxlength=300></tr></td>
+	    </form>
+	</table>
+</div>
+<div id="sellmessage">回收价格根据各种教材情况不同而变化，<br>选择积分方式卖书可获两倍于现金的等值积分，<br>详情请当面询问收书的同学。</div>
+<div id="bottomdiv">
+	<img id='blueimg' src="{{ STATIC_URL }}image/bluemark.jpg">
+	<p><font size=3 color='red' id='behalffont'></font></p>
+</div>
+<hr style='width:320px;'>
+<div id="buttondiv">
+	<input type="button" class='sellingbutton' value='确认无误' onclick='selljudge()'>
+</div>

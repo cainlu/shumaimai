@@ -1,0 +1,8 @@
+{% extends "base/base.jinja" %}
+
+{% block content_main %}
+<div class="main-block">
+{% from 'base/controls.jinja' import msg with context %}
+{{ msg(redirect_message|safe, redirect_url, redirect_seconds) }}
+</div>
+{% endblock %}

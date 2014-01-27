@@ -1,0 +1,55 @@
+{% extends "admin_ext/base/book_base.jinja" %}
+
+{% block book_active_nav %}#book-nav-isbn-add{% endblock %}
+
+{% block book_main %}
+<div class="container">
+    <script type="text/javascript">
+        $(function(){
+                $('#id_position').focus();
+                $('body').keydown(function (event){
+                    if (event.keyCode==13) {
+                        $('#add-more').get(0).click();
+                    }
+                });
+        });
+    </script>
+    <table id="tb-data" class="table table-striped table-hover">
+        <tr>
+            <th order="id">ID</th>
+            <th order="isbn">ISBN</th>
+            <th>库存</th>
+        </tr>
+        <tr>
+            <td>{{ book.id }}</td>
+            <td><span title="{{ book.isbn }}">{{ brief(book.isbn, 15) }}</span></td>
+            <td>
+                {% for logistic in book.get_logistic_info() %}
+                <span class="label label-info">
+                    {{ string(logistic.position) }}
+                    <i class="icon-remove icon-white pointer" onClick="
+                            $.get('{{ url('admin_logistic_delete') }}', {'id':{{ logistic.id }}},function(data, textStatus){ 
+                                window.location.reload();
+                            });
+                        "></i>
+                </span>
+                {% endfor %}
+                <span class="label label-info">
+                    <i class="icon-plus icon-white pointer" onclick="
+                        bootbox.prompt('请输入库位号', '取消', '提交', function(result) {
+                            result = $.trim(result);
+                            if ((result === null) || (result == '')) {
+                            } else {
+                                $.post('{{ url('admin_logistic_add') }}', {'id':{{ book.id }}, 'position':result},function(data, textStatus){ 
+                                    window.location.reload();
+                                });
+                            }
+                        });
+                    "></i>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <a id="add-more" class='btn btn-large btn-primary' href={{ url('admin_book_isbn_add') }}>继续添加</a>
+</div>
+{% endblock %}

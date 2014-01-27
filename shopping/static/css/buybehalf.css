@@ -1,0 +1,56 @@
+#closeimg{
+	cursor:pointer;
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index:3;
+}
+
+#topdiv{
+	text-align:center;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background-image:url(images/title.png);
+	padding:5px 0 5px 0;
+	width:100%;
+}
+
+#centerdiv{
+	padding:0 20px 0 20px;
+}
+
+#butbehalfmessage{
+	padding:10px 20px 0 20px;
+	font-size:14px;
+}
+
+.behalfinput{
+	background-image:url(images/title.png);
+	height:30px;
+	border:solid 1px gray;
+	border-radius:5px;
+}
+
+#bottomdiv{
+	height:35px;
+	padding:10px 0 0 0;
+}
+
+#blueimg{
+	width:40px;
+	height:40px;
+	float:left;
+	padding:0 0 0 15px;
+	display:none;
+}
+
+#buttondiv{
+	text-align:center;
+}
+
+.buylabel{
+	display:inline-block;
+	*display:inline;
+	width:150px;
+}

@@ -1,0 +1,129 @@
+{% macro sidebar_book_list(sidebarId, sidbarName, books) %}
+<link href="{{ STATIC_URL }}css/sidebar_book_list.css" rel="stylesheet" type="text/css" op="combine" />
+<div id="{{ sidebarId }}" class="sidebar-item">
+    <div class="header">{{ sidbarName }}</div>
+    <div class="content">
+        {% for book in books %}
+        <div class="sidebar-book-item">
+            <div class="sidebar-book-img img" onClick="window.open('{{ url('page_book', book_id=book.id) }}');">
+                <div style="width:200px;margin-left:-65px;">
+                    <img height="100" src="{{ url_encode(book.image_dict['cover'], mode=1, height=100) }}" >
+                </div>
+            </div>
+            <div class="sidebar-book-info">
+                <div class="sidebar-book-info-name"><a href="{{ url('page_book', book_id=book.id) }}" target="_blank">{{ brief(book.name, 20) }}</a></div>
+                <div class="sidebar-book-info-price-ori price-ori">&#65509;{{ book.price_ori }}</div>
+                <div class="sidebar-book-info-price-now price-now">&#65509;{{ book.price_old }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro taxonomy_list(taxonomy_parent, is_active=True, children_is_hidden=False, children_height=0) %}
+<link href="{{ STATIC_URL }}css/taxonomy_list.css" rel="stylesheet" type="text/css" op="combine" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/taxonomy_list.js" op="combine" ></script>
+<div class="taxonomy-list">
+    {% if is_active %}
+        {% if children_is_hidden %}
+            <div class="taxonomy-list-header header" onClick="$(this).taxonomy_children();">
+                <span class="header-wrapper">{{ string(taxonomy_parent.name) }}</span>
+                <span class="ico-wrapper"><img id="ico" src="{{ STATIC_URL }}image/ico_right_v.png"></img></span>
+            </div>
+            {% if children_height == 0 %}
+                <div class="taxonomy-list-children" style="display:none;">
+            {% else %}
+                <div class="taxonomy-list-children" style="display:none;height:{{ children_height }}px;">
+            {% endif %}
+        {% else %}
+            <div class="taxonomy-list-header header" onClick="$(this).taxonomy_children();">
+                <span class="header-wrapper">{{ string(taxonomy_parent.name) }}</span>
+                <span class="ico-wrapper"><img id="ico" src="{{ STATIC_URL }}image/ico_down_v.png"></img></span>
+            </div>
+            {% if children_height == 0 %}
+                <div class="taxonomy-list-children">
+            {% else %}
+                <div class="taxonomy-list-children" style="height:{{ children_height }}px;">
+            {% endif %}
+        {% endif %}
+        {% for taxonomy_child in taxonomy_parent.get_children() %}
+        <div><span>{{ string(' · ') }}</span><a href={{ url('page_taxonomy', taxonomy_id=taxonomy_child.id) }}>{{ taxonomy_child.name }}</a></div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div class="taxonomy-list-header header" onclick="window.location.href='{{ url('welcome_new') }}';">
+            <span class="header-wrapper">{{ string('新生二手书购买指南') }}</span>
+            <span class="ico-wrapper"><img id="ico" src="{{ STATIC_URL }}image/ico_right_v.png"></img></span>
+        </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro book_list(book) %}
+<link href="{{ STATIC_URL }}css/book_list.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="book-list-item">
+    <div id="book-list-img" class="img" onClick="window.open('{{ url('page_book', book_id=book.id) }}');">
+        <div style="width:400px;margin-left:-145px;">
+            <img height="140" src="{{ url_encode(book.image_dict['cover'], mode=1, height=140) }}">
+        </div>
+    </div>
+    <div id="book-list-info">
+    {% from 'base/controls.jinja' import key_value %}
+        <div id="book-list-detail">
+            <div id="book-list-header"><a href="{{ url('page_book', book_id=book.id) }}" target="_blank">{{ book.name }}</a></div>
+            <div class="book-list-item-info">
+                {{ key_value("作者", 70, book.author, 200, value_link=search(book.author)) }}
+            </div>
+            <div class="book-list-item-info">
+                {{ key_value("出版社", 70, book.press, 200, value_link=search(book.press)) }}
+            </div>
+            <div class="book-list-item-info">
+                {% if book.publication_date %}
+                    {{ key_value("出版日期", 70, book.publication_date.isoformat(), 200) }}
+                {% else %}
+                    {{ key_value("出版日期", 70, '', 200) }}
+                {% endif %}
+            </div>
+            <div class="book-list-item-info">
+                {% if book.version %}
+                    {{ key_value("版次", 70, book.version, 200) }}
+                {% else %}
+                    {{ key_value("版次", 70, '', 200) }}
+                {% endif %}
+            </div>
+        </div>
+        <div id="book-list-item-price">
+            <span class="price-ori-value">{{ key_value("原价", 40, string("￥", book.price_ori), 60) }}</span>
+            <span class="price-now-value">{{ key_value("麦麦价", 50, string("￥", book.price_old), 70) }}</span>
+            <span class="price-now" style="display:inline-block;float:left;">{{ string('(节省了 ', book.price_ori-book.price_old, ' 元)') }}</span>
+            {% include 'block/buybutton.jinja' %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro book_bar(name, id, books, max=None, with_des=False) %}
+<link href="{{ STATIC_URL }}css/book_bar.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="{{ id }}" class="book-bar" >
+    <div class="book-bar-head">{{ name }}</div>
+    {% from 'base/book_controls.jinja' import book_brief with context %}
+    <div class="book-bar-main">
+        {% if max == None %}
+            {% for book in books %}
+            {{ book_brief(book, with_des) }}
+            {% endfor %}
+        {% else %}
+            {% for book in books[:max] %}
+            {{ book_brief(book, with_des) }}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}
+
+
+
+

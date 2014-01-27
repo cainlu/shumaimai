@@ -1,0 +1,132 @@
+{% extends "base/base.jinja" %}
+
+{% block head %}
+<link href="{{ STATIC_URL }}css/advertise.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/advertise.js"></script>
+{% endblock %}
+
+{% block readyJS %}
+{% for top in topFive %}
+    $('#thFive{{top.id}}').mouseover(function() {
+        $('#thFive{{top.id}}').css('cursor', 'pointer');
+        $('#imgFive{{top.id}}').hide();
+        $('#divFive{{top.id}}').show();
+    });
+{% endfor %}
+{% for top in topFive2 %}
+    $('#thFive{{top.id}}').mouseover(function() {
+        $('#thFive{{top.id}}').css('cursor', 'pointer');
+        $('#imgFive{{top.id}}').hide();
+        $('#divFive{{top.id}}').show();
+    });
+    $('#thFive{{top.id}}').mouseleave(function() {
+        $('#divFive{{top.id}}').hide();
+        $('#imgFive{{top.id}}').show();
+    });
+{% endfor %}
+{% endblock %}
+
+{% block content_main %}
+<div id='ad_top'>
+    <img id='img_top' src="{{ STATIC_URL }}image/topshow{{activity}}.jpg">
+</div>
+<div id='ad_middle'>
+    <div class='ad_text'>优秀散文排行榜</div>
+    <hr>
+    <table id='top_table'>
+        <tr>
+            {% for top in topFive %}
+                <th class='thFive' id='thFive{{top.id}}' onclick='advertise_url({{top.id}})'>
+                    <div id='divFive{{top.id}}' class='divFive'>
+                    <div>{{top.title}}</div>
+                    <div>{{top.author}}</div>
+                    <br>
+                    <div>{{text_replace(top.context)}}</div>
+                    </div>
+                </th>
+            {% endfor %}
+        </tr>
+    </table>
+    <br>
+    <div class='ad_text'>热门插画排行榜</div>
+    <hr>
+    <table id='top_table2'>
+        <tr>
+            {% for top in topFive2 %}
+                <th class='thFive' id='thFive{{top.id}}' onclick='advertise_url({{top.id}})'>
+                    <div id='imgFive{{top.id}}' class='divFive'><img src="{{ STATIC_URL }}image/ad{{top.id}}.jpg" class='imgFive'></div>
+                    <div id='divFive{{top.id}}' style='display:none' class='divFive'>
+                    <div>{{top.title}}</div>
+                    <div>{{top.author}}</div>
+                    <br>
+                    <div>{{text_replace(top.context)}}</div>
+                    </div>
+                </th>
+            {% endfor %}
+        </tr>
+    </table>
+    <br>
+    <br>
+</div>
+<table id='ad_downtable'>
+    <tr>
+        <th id='ad_leftdown' colspan=4>
+            <span class='ad_text'>参赛作品</span>
+            <hr>
+        </th>
+        <th id='ad_rightdown'>
+        </th>
+    </tr>
+    {% for advertise in advertises %}
+        <tr>
+            <td class='td_leftdown' rowspan=3>
+            {% if advertise.type == 1 %}
+                <img src="{{ STATIC_URL }}image/activity2_deafult.jpg" class='ad_left_img'>
+            {% elif advertise.type == 2 %}
+                <img src="{{ STATIC_URL }}image/ad{{advertise.id}}.jpg" class='ad_left_img'>
+            {% endif %}
+            </td>
+            <td colspan=3>
+                <a href='/advertise/commentshow/?advertiseid={{advertise.id}}'>
+                    {{advertise.title}}
+                </a>
+                {% if advertise.type == 1 %}
+                                            （散文）
+                {% elif advertise.type == 2 %}
+                                            （插画）
+                {% endif %}
+            </td>
+            {% if loop.first %}
+                <td rowspan=99999 id='lf_context'>
+                    <img src="{{ STATIC_URL }}image/ad_right_img.jpg" id='ad_right_img'>
+                    <br>
+                    <span class='ad_text'>留言板</span>
+                    {% include 'block/message.jinja' %}
+                </td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td class='author'>
+                {{advertise.author}}
+            </td>
+            <td colspan=2 class='td_leftmiddle2'>
+                <div class='div_leftmiddle'>
+                    <a onclick='ajaxAgree({{advertise.id}})' class='agreeA agree{{advertise.id}}'>
+                    赞一下[{{advertise.agree}}]</a>
+                    <a onclick='ajaxDisagree({{advertise.id}})' class='disagreeA disagree{{advertise.id}}'>
+                    打酱油[{{advertise.disagree}}]</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=3 class='td_leftmiddle'><div class='td_leftdown2'>{{text_replace(advertise.context)}}</div></td>
+        </tr>
+        <tr height='20px'/>
+    {% endfor %}
+    <tr>
+        <td colspan=4>
+            <input type="button" value="显示全部文章" id='button1' onclick='advertise_all({{activity}})'>
+        </td>
+    </tr>
+</table>
+{% endblock %}

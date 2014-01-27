@@ -1,0 +1,26 @@
+{% extends "admin_ext/base/base.jinja" %}
+
+{% block body %}
+<link href="{{ STATIC_URL }}css/admin_ext/login.css" rel="stylesheet">
+    <div class="container main-display login-form">
+        <form class="form-horizontal" method="post" action="{{ url('admin_login') }}">
+            {% csrf_token %}
+            <fieldset>
+                <div class="text-error login-form-errors">{{ login_form.errors['__all__'] }}</div>
+                <div class="control-group">
+                    <div class="controls">{{ login_form['callback'] }}</div>
+                </div>
+                <div class="control-group">
+                    {{ login_form['username'].label_tag(attrs={"class":"control-label"}) }}
+                    <div class="controls">{{ login_form['username'] }}</div>
+                </div>
+                <div class="control-group">
+                    {{ login_form['password'].label_tag(attrs={"class":"control-label"}) }}
+                    <div class="controls">{{ login_form['password'] }}</div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">登录</button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
+

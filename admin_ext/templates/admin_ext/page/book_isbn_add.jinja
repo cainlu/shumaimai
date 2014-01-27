@@ -1,0 +1,22 @@
+{% extends "admin_ext/base/book_base.jinja" %}
+
+{% block book_active_nav %}#book-nav-isbn-add{% endblock %}
+
+{% block book_main %}
+<div class="container">
+    <script type="text/javascript">
+        $(function(){
+                $('#id_position').focus();
+        });
+    </script>
+    <form class="form-horizontal" method="post" action="{{ url('admin_book_isbn_add') }}">
+    {% csrf_token %}
+    {{ book_isbn_add_form.as_bs_horizontal_form() }}
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base/base.jinja" %}
+
+{% block head %}
+<link href="{{ STATIC_URL }}css/comment.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/advertise.js"></script>
+{% endblock %}
+
+{% block content_main %}
+<div id='leftdiv'>
+    <br><br>
+    <div id='bottomdiv'>
+        <div id='titlediv2'>
+            <div id='namediv2'>{{advertise.title}}</div>
+            <div id='agreediv'>
+                <a onclick='ajaxAgree({{advertise.id}})' class='agreeA agree{{advertise.id}}'>
+                                            赞一下[{{advertise.agree}}]</a>&nbsp;&nbsp;&nbsp;
+                <a onclick='ajaxDisagree({{advertise.id}})' class='disagreeA disagree{{advertise.id}}'>
+                                            打酱油[{{advertise.disagree}}]</a>
+            </div>
+            <div id='backdiv'><a href='/advertise/advertiseshow/?activity={{advertise.activity}}'>[回到活动首页]</a></div>
+        </div>
+        <div id='authordiv'>
+            {{advertise.author}}
+        </div>
+        <div id='textdiv2'>{{text_replace(advertise.context)}}</div>
+        <br><br>
+        <div>
+            <a onclick='ajaxAgree({{advertise.id}})' class='agreeA agree{{advertise.id}}'>
+                                赞一下[{{advertise.agree}}]</a>&nbsp;&nbsp;&nbsp;
+            <a onclick='ajaxDisagree({{advertise.id}})' class='disagreeA disagree{{advertise.id}}'>
+                                打酱油[{{advertise.disagree}}]</a>
+        </div>
+        <br><hr><br>
+        {% include 'block/message.jinja' %}
+    </div>
+</div>
+<div id='rightdiv'>
+    <br><br>
+    <div id='right_back'>
+        <div id='right_top'>推荐阅读</div>
+        <br>
+        {% for right in right_five %}
+        <div id='right_down'>
+            {% if right.type == 1 %}
+                <img src="{{ STATIC_URL }}image/activity2_deafult.jpg" class='imgFive'>
+            {% elif right.type == 2 %}
+                <img src="{{ STATIC_URL }}image/ad{{right.id}}.jpg" class='imgFive'>
+            {% endif %}
+            <a class='right_text' href='/advertise/commentshow/?advertiseid={{right.id}}'>
+                {{right.title}}
+            </a>
+            <div class='right_text'>{{right.author}}</div>
+            <div class='right_text'>{{get_day(right.time)}}</div>
+            <div class='right_text'>
+                <a onclick='ajaxAgree({{right.id}})' class='agreeA agree{{right.id}}'>
+                                    赞一下[{{right.agree}}]</a>
+            </div>
+            <div class='right_text'>
+                <a onclick='ajaxDisagree({{right.id}})' class='disagreeA disagree{{right.id}}'>
+                                    打酱油[{{right.disagree}}]</a>
+            </div>
+        </div>
+        <br>
+        {% endfor%}
+       </div>
+</div>
+{% endblock %}

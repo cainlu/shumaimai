@@ -1,0 +1,40 @@
+{% extends "base/base.jinja" %}
+
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/welcome_new.css" rel="stylesheet" type="text/css" op="combine" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/welcome_new.js"></script>
+
+<div><img src='/static/image/welcome_top.jpg'></div><br>
+<div class='ad_text'>麦麦二手书有什么好？</div>
+<hr>
+<div><img src='/static/image/welcome_middle.jpg'></div><br>
+<div class='ad_text'>新生如何购买二手书？</div>
+<hr>
+<div><img src='/static/image/welcome_bottom.jpg'></div><br>
+<div class='ad_text'>2013级新生必备教材？</div>
+<hr>
+<table>
+<tr>
+	{% for book in new_books %}
+	<td class='new_td'>
+		<img height="100" src="{{ url_encode(book.image_dict['cover'], mode=1, height=100) }}" />
+	</td>
+	{% endfor %}
+</tr>
+<tr>
+	{% for book in new_books %}
+	<td class='new_td'>
+	    <a href="{{ url('page_book', book_id=book.id) }}" target="_blank">{{ brief(book.name, 20) }}</a>
+	</td>
+	{% endfor %}
+</tr>
+<tr>
+	{% for book in new_books %}
+	<td class='new_td'>
+	    <span class="sidebar-book-info-price-ori price-ori new_price_ori">&#65509;{{ book.price_ori }}</span>
+        <span class="sidebar-book-info-price-now price-now new_price_old">&#65509;{{ book.price_old }}</span>
+	</td>
+	{% endfor %}
+</tr>
+</table><br>
+{% endblock %}

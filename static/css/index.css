@@ -1,0 +1,52 @@
+#left-sidebar {
+    padding:0px;
+    margin:0px;
+}
+
+#right-sidebar {
+    padding:0px;
+    margin:0px;
+}
+
+#index-main {
+    text-align:center;
+    padding:auto;
+    margin:auto;
+}
+
+#navi {
+    text-align:center;
+    margin:auto;
+    width:220px;
+    height:330px;
+    padding-left:0px;
+    padding-right:0px;
+    display:inline-block;
+    *display:inline;
+    top:0px;
+    vertical-align:top;
+}
+
+#navigation {
+    border-bottom:1px solid #F5C487;
+}
+
+#ads {
+    width:670px;
+    height:330px;
+    padding-left:0px;
+    padding-right:0px;
+    text-align:center;
+    margin:auto;
+    padding:auto;
+    display:inline-block;
+    *display:inline;
+}
+
+#recommend {
+    padding:10px;
+    clear:left;
+    text-align:center;
+}
+
+

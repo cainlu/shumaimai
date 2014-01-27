@@ -1,0 +1,42 @@
+<link href="{{ STATIC_URL }}css/message.css" rel="stylesheet" type="text/css" />
+
+<form id="message" method="post" action="{{ url('messageboard') }}">
+{% csrf_token %}
+    {% if user.is_authenticated() %}
+        <p>{{user.username}}</p>
+    {% endif%}
+    {% if commentshow %}
+        <input type='hidden' name='objectid' id='object1' value='{{advertise.id}}'/>
+        <input type='hidden' name='activity' id='activity1' value='{{advertise.activity}}'/>
+        <textarea name='context' id='context1' placeholder='说些什么吧'></textarea>
+        <br><br>
+        <input type="button" value="点击发布" id='formsubmit1' onclick='messagejudge("1")'>
+        <br><br>
+    {% else %}
+        <input type='hidden' name='objectid' id='object2' value='-1'/>
+        <input type='hidden' name='activity' id='activity2' value='{{activity}}'/>
+        <textarea name='context' id='context2' placeholder='说些什么吧'></textarea>
+        <br><br>
+        <input type="button" value="点击发布" id='formsubmit2' onclick='messagejudge("2")'>
+        <br><hr>
+    {% endif %}
+    <div id='my_message'></div>
+    {% for comment in comments %}
+        {% if comment.object > 0 %}
+            <div>
+                {{get_split(comment.author, '||')[0]|e}}&nbsp;&nbsp;&nbsp;评论&nbsp;&nbsp;
+                <a href='/advertise/commentshow/?advertiseid={{get_split(comment.author, '||')[1]}}'>
+                    {{get_split(comment.author, '||')[2]|e}}
+                </a>
+            </div>
+        {% elif comment.object == -1 %}
+            <div>{{comment.author|e}}</div>
+        {% endif %}
+        <div>{{comment.time}}</div>
+        <div>{{comment.context|e}}</div>
+        <br>
+    {% endfor %}
+    {% if commentshow %}
+        <a href='/advertise/commentshow/?advertiseid={{advertise.id}}&all=1'>显示全部评论</a>
+    {% endif %}
+</form>

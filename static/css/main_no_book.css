@@ -1,0 +1,22 @@
+#no-book {
+    padding-top:5px;
+}
+
+#buybehalftable{
+    text-align:left;
+}
+
+#buybehalftable .right {
+    padding-left:50px;
+}
+
+.behalfinput2{
+    height:30px;
+    border:solid 1px rgb(251,183,110);
+}
+
+#buttondiv2{
+    padding:0 0 0 420px;
+}
+
+

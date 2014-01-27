@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>书麦麦，您身边的二手书网店</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        {% block head %}{% endblock %}
+        <link href = "{{ STATIC_URL }}css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+        <link href = "{{ STATIC_URL }}css/account.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/account.js"></script>
+    </head>
+    <body>
+        <div id="body">
+            <div id="header">
+                <div class="logo">
+                    <img src="{{ STATIC_URL }}image/logo.jpg" height="70" onClick="
+                         window.location.href='{{ url('index') }}';
+                         "
+                         ></img>
+                </div>
+            </div>
+            <div id="content-main" class="main-column">{% block content_main %}{% endblock %}</div>
+        </div>
+        {% include 'block/footer.jinja' %}
+    </body>
+</html>
+    

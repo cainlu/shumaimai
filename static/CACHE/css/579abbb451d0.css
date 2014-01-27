@@ -1,0 +1,168 @@
+
+/*** footer ***/
+#footer {
+    width:100%;
+    clear:both;
+    background-color:#282828;
+    border-top:2px solid #F48C19;
+    text-align:center;
+    margin:auto;
+    padding:auto;
+} 
+
+#footer a{
+    color:#FFFFFF;
+}
+
+#footer .footer-content {
+    padding-top:5px;
+    width:700px;
+    margin:auto;
+    text-align:center;
+    color:#FFFFFF;
+}
+
+.footer-column {
+    padding:5px;
+    margin-right:60px;
+    margin-left:60px;
+    display:inline-block;
+    *display:inline;
+    vertical-align:top;
+    text-align:left;
+}
+
+
+.footer-column-header {
+    padding:5px;
+    font-size:14px;
+    color:#F48C19;
+    font-weight:bold;
+}
+
+.footer-column-body {
+    font-size:13px;
+    padding-left:7px;
+    padding-top:7px;
+}
+
+.footer-column-body div {
+    display:inline-block;
+    *display:inline;
+    width:65px;
+}
+
+#footer-about-us {
+    left:0px;
+}
+
+#footer .footer-rights {
+    font-size:12px;
+    height:15px;
+    bottom:0px;
+    text-align:center;
+}
+
+#cnzz {
+    float:right;
+    width:0px;
+    height:0px;
+    visibility:hidden;
+}
+
+
+#bk_footer {
+    height:120px;
+    display:block;
+    background-image:url('/static/css/images/bk_footer.png?032aff73bfe6');
+    background-repeat:repeat-x;
+    background-position:bottom right;
+}
+
+
+
+
+
+#login {
+    margin-top:50px;
+    text-align:center;
+}
+
+#login .pic {
+    display:inline-block;
+    *display:inline;
+    vertical-align:middle;
+    margin-right:80px;
+}
+
+#login .main {
+    display:inline-block;
+    *display:inline;
+    vertical-align:middle;
+    width:450px;
+    height:280px;
+    margin-top:20px;
+    background-image:url('/static/css/images/bk_login.png?826c5517599e');
+    background-repeat:no-repeat;
+}
+
+#login .header {
+    margin-top:7px;
+    height:36px;
+    line-height:36px;
+    color:#F48C19;
+    font-size:20px;
+    text-align:left;
+    padding-left:10px;
+}
+
+#login .content {
+    margin-top:20px;
+    padding:10px;
+}
+
+#login .form-field {
+    height:50px;
+}
+
+#login .form-field div{
+    vertical-align:top;
+    display:inline-block;
+    *display:inline;
+    margin:0px;
+    padding:0px;
+}
+
+#login .form-field label{
+    width:100px;
+    margin-right:10px;
+}
+
+#login .form-field input{
+    width:200px;
+}
+
+#login .form-field input#id_captcha_1{
+    width:40px;
+}
+
+#login .form-field .errorlist{
+    padding-left:120px;
+    font-size:13px;
+}
+
+#login .submit {
+    margin-left:120px;
+    margin-right:20px;
+    width:96px;
+    height:21px;
+}
+
+#login .submit-adv {
+    font-size:16px;
+    line-height:40px;
+    display:inline-block;
+    *display:inline;
+    vertical-align:bottom;
+}
+

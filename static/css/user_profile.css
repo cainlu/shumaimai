@@ -1,0 +1,64 @@
+.block {
+    width:650px;
+    margin:10px;
+}
+
+.block .head {
+    background-color:#FFFFFF;
+    text-align:left;
+    color:#F48C19;
+    padding:5px;
+    border-bottom:1px solid #F48C19; 
+    font-size:18px;
+}
+
+.block .content {
+    padding:5px;
+}
+
+
+.form-field .field {
+    display:inline-block;
+    *display:inline;
+    width:250px;
+    padding:10px 0 0 0;
+}
+
+.form-field .errorlist {
+    display:inline-block;
+    *display:inline;
+    z-index:2;
+}
+
+.block .content .submit {
+    color:#FFFFFF;
+    font-family:"Trebuchet MS", sans-serif;
+    cursor: pointer;
+    padding:5px;
+    background-image:url('images/btn_account.png');
+    background-repeat:repeat-x;
+    text-align:center;
+    display:inline-block;
+    *display:inline;
+    font-size:20px;
+    width:105px;
+    margin-top:20px;
+}
+
+.block .note {
+    text-align:left;
+    background-color:rgb(225,255,244);
+    border:1px solid rgb(144,244,181);
+    color:#000000;
+    font-size:12px;
+    padding:5px;
+    display:inline-block;
+    *display:inline;
+    margin-left:10px;
+}
+
+    
+
+
+
+

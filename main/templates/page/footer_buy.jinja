@@ -1,0 +1,33 @@
+{% extends "base/base.jinja" %}
+
+{% block content_main %}
+<div class="main-content">
+    <br>
+    <h2>我要买书</h2>
+    <p>第一步：</p>
+    <p>在浏览器地址栏中输入http://shumaimai.cn</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_1.jpg"></img></p>
+    <br>
+    <p>第二步：</p>
+    <p>在首页搜索栏中输入你想购买的图书。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_2.jpg"></img></p>
+    <p>点击搜索按钮后显示搜索结果，</p>
+    <p>找到你想买的书并点击“放入购物车”。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_3.jpg"></img></p>
+    <p>或者</p>
+    <p>如果你还不确定具体需要哪一本书，可以在首页的分类栏中选择你需要的图书类别。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_4.jpg"></img></p>
+    <br>
+    <p>第三步：</p>
+    <p>在将你所需的书放入购物车后，点击置顶栏上的“购物车”图标，修改你想购买的图书的数量，并填写必要的收货信息。在确认无误后，点击“确认订单”按钮。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_5.jpg"></img></p>
+    <br>
+    <p>第四步：</p>
+    <p>还在等第四步？哈哈，贰了吧？！</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_buy_6.jpg"></img></p>
+    <p>在书麦麦买书你所需要的只有三步！</p>
+    <p>没有强行注册，没有繁琐的页面跳转，无需麻烦在线支付流程，你所能体验的只有简单，简单，更简单！</p>
+    <br>
+</div>
+{% include 'block/footer_adv.jinja' %}
+{% endblock %}

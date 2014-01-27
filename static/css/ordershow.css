@@ -1,0 +1,55 @@
+#table-id {
+	width:900px;
+	margin:auto;
+	border-collapse: collapse;
+	border: 1px solid rgb(192,192,192);
+	background-color:rgb(255,246,231);
+}
+
+#first-tr{
+	cursor:pointer;
+	color:rgb(105,105,105);
+	border: 1px solid rgb(192,192,192);
+	background-color:rgb(245,245,245);
+}
+
+#table-id th{
+	border: 1px solid rgb(192,192,192);
+}
+
+#table-id td{
+	border-top: 1px solid rgb(192,192,192);
+}
+
+.table-detail {
+	width:740px;
+	margin:20px auto 20px auto;
+	border-collapse: collapse;
+	border-top: 1px solid rgb(142,79,0);
+	border-bottom: 1px solid rgb(142,79,0);
+	background-color:rgb(254,213,185);
+}
+
+.first-tr-detail{
+	color:rgb(142,79,0);
+	border-top: 1px solid rgb(142,79,0);
+	border-bottom: 1px solid rgb(142,79,0);
+	background-color:rgb(225,225,225);
+}
+
+.arrow{
+	position: relative;
+	top: 3px;
+}
+
+.cancelorder{
+	cursor:pointer;
+	position:relative;
+	left:2px;
+	top:2px;
+}
+
+.deals-tr:hover{
+	cursor:default;
+	background-color:rgb(180,180,250);
+}

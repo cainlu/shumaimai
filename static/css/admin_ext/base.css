@@ -1,0 +1,130 @@
+/*
+ * basic css for all pages
+ */
+
+
+/*
+ * base
+ */
+
+body {
+    min-height:1000px;
+    margin-bottom:65px;
+    margin-top:65px;
+}
+
+.pointer {
+    cursor:pointer!important;
+}
+
+.hidden {
+    visibility:hidden!important;
+}
+
+.none {
+    display:none!important;
+}
+
+.block {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.text-center {
+    text-align:center!important;
+    margin:auto;
+    padding:auto;
+}
+
+.text-left {
+    text-align:left!important;
+}
+
+.text-right {
+    text-align:right!important;
+}
+
+
+/* 
+ * div
+ */
+
+.main-display {
+    background-color:#F5F5F5;
+    border-radius:4px 4px 4px 4px;
+    border:1px solid #DDDDDD;
+    padding:10px;
+}
+
+.container-small {
+    width:800px;
+}
+
+/*
+ * form
+ */
+
+fieldset {
+    background-color:#F7F7F7;
+}
+
+.errorlist {
+    font-size:12px;
+    text-align:left;
+    margin-bottom:0px;
+}
+
+.required label:after {
+    content:"*";
+    font-size:12px;
+    color:red;
+}
+
+
+/*
+ * text
+ */
+dd .choice {
+    float:left;
+    margin-right:10px;
+    width:100px;
+}
+
+/*
+ * table
+ */
+
+.order {
+    cursor:pointer;
+}
+
+.tr-toggle {
+    cursor:pointer;
+}
+
+.tr-toggle-data {
+    display:none;
+}
+
+
+/*
+ * button
+ */
+
+.btn-wrapper {
+    background: none repeat scroll 0 0 #444444;
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+
+/*
+ * custom bootbox
+ */
+.modal-large {
+    width:900px;
+    margin-left:-450px;
+}
+

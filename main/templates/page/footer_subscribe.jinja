@@ -1,0 +1,47 @@
+{% extends "base/base.jinja" %}
+
+{% block content_main %}
+<div class="main-content">
+    <br>
+    <h2>图书代购</h2>
+    <p>书麦麦网站以回收再销售学校二手教材为主，但也为消费者提供方便省力的图书代购业务。</p>
+    <br>
+    <p>你是否遇到过这些问题？</p>
+    <ul>
+        <li>网上买书是便宜，但动不动就遇到高运费？一本书才15块，运费就得6块钱？运费总是太贵！又老凑不齐网站免运费的最低消费额？</li>
+        <li>学校里的自提点很远，每次网购取货都走得很辛苦？每天快递规定的取货时间超短，万一我在上课今天就又没法领货了？</li>
+        <li>网上支付太麻烦了，一堆的密码要输入还要担心安全问题，更别提我还没有网银支付宝什么的呐！！！</li>
+    </ul>
+    <br>
+    <p>现在，书麦麦联合众家，特别提供代购服务为你解决这三点烦恼。</p>
+    <br>
+    <p>第一步：</p>
+    <p>在浏览器地址栏中输入http://shumaimai.cn</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_subscribe_1.jpg"></img></p>
+    <br>
+    <p>第二步：</p>
+    <p>首页点击“代购”按钮，并在弹出框中尽可能多地填写你希望购买的图书的信息（最好能给出这本书的网址链接，这将帮我们明确你需要购买的是哪本书）；确认无误后点击“放入购物车”。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_subscribe_2.jpg"></img></p>
+    <br>
+    <p>或者</p>
+    <p>在首页搜索你想要买的任何图书，点击搜索后若网站没有找到这本书，你将看到这张页面：</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_subscribe_3.jpg"></img></p>
+    <p>同样，尽可能多地填写图书资料，并点击“放入购物车”。</p>
+    <br>
+    <p>第三步：</p>
+    <p>在将你想买的书放入购物车后，点击置顶栏上的“购物车”图标，修改你想购买的图书的数量，并填写必要的收货信息。在确认无误后，点击“确认订单”按钮。</p>
+    <p><img width="900" src="{{ STATIC_URL }}image/footer_subscribe_4.jpg"></img></p>
+    <br>
+    <p><strong>OK！</strong></p>
+    <br>
+    <p>
+        <span style="color:red;">注意！代购的图书在下单前是没有标注价格的。</span>
+        <span>在你确认下单后，书麦麦的客服人员会尽快与你联系。</span>
+    </p>
+    <p>在确定代购图书的价格无误后，我们将替你购买这本书并将书送至你的楼下。</p>
+    <br>
+    <p>书麦麦支持货到付款，无需各种繁琐的在线支付。</p>
+    <br>
+</div>
+{% include 'block/footer_adv.jinja' %}
+{% endblock %}

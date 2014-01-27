@@ -1,0 +1,82 @@
+{% extends "admin_ext/base/book_base.jinja" %}
+
+{% block book_main %}
+<div class="container">
+    <legend><strong>{{ string('书本') }}</strong></legend>
+    <form id="book-edit-form" class="form-horizontal main-form" method="post" action="{{ url('admin_book_edit', id=book.id) }}">
+        <legend>{{ string('Basic Info') }}</legend>
+        {% from 'admin_ext/base/base_ctr.jinja' import key_value %}
+        <fieldset class="text-center">
+            <div>
+                {{ key_value('ID', book.id, 120, 730) }}
+            </div>
+            <div>
+                {{ key_value('创建时间', book.created.isoformat(), 120, 200) }}
+                {{ key_value('修改时间', book.modified.isoformat(), 120, 400) }}
+            </div>
+            <div style="margin-top:5px;margin-bottom:5px;">
+                <div style="display:inline-block;">
+                    <span style="display:inline-block; text-align:left; width:120px;">{{ string('库存', ': ') }}</span>
+                    <span style="display:inline-block; text-align:left; width:730px;">
+                        {% for logistic in book.get_logistic_info() %}
+                        <span class="label label-info">
+                            {{ string(logistic.position) }}
+                            <i class="icon-remove icon-white pointer" onClick="
+                                    $.get('{{ url('admin_logistic_delete') }}', {'id':{{ logistic.id }}},function(data, textStatus){ 
+                                        window.location.reload();
+                                    });
+                                "></i>
+                        </span>
+                        {% endfor %}
+                        <span class="label label-info">
+                            <i class="icon-plus icon-white pointer" onclick="
+                                bootbox.prompt('请输入库位号', '取消', '提交', function(result) {
+                                    result = $.trim(result);
+                                    if ((result === null) || (result == '')) {
+                                    } else {
+                                        $.post('{{ url('admin_logistic_add') }}', {'id':{{ book.id }}, 'position':result},function(data, textStatus){ 
+                                            window.location.reload();
+                                        });
+                                    }
+                                });
+                            "></i>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+        <legend>{{ string('Edit Area') }}</legend>
+        <div class="pull-right" style="margin-right:200px;">
+            <div class="text-center btn btn-link" onClick="
+                showOneImageChangeDialog(
+                    '{{ url('admin_book_change_cover', id=book.id) }}', 
+                    '{{ csrf_token|safe }}'
+                    );
+                "
+                >
+                {% if book.image_dict['cover'] %}
+                <img class="thumbnail" data-src="holder.js/150x150" src="{{ url_encode(book.image_dict['cover'], mode=1, height=150, now=now()) }}"></img>
+                {% else %}
+                <img class="thumbnail" data-src="holder.js/150x150" src="{{ url_encode('/image/default.jpg', mode=1, height=150)}}"></img>
+                {% endif %}
+                <div>封面</div>
+            </div>
+        </div>
+        <fieldset class="edit-area">
+        {% csrf_token %}
+        {{ book_edit_form.as_bs_horizontal_form() }}
+        </fieldset>
+    </form>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group dropup btn-wrapper">
+                        <button class="btn btn-primary" onclick="$('#book-edit-form').submit();">{{ string('保存') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

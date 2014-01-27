@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>书麦麦，寝室里的校园二手书店</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+        {% block head %}{% endblock %}
+
+        {% compress css %}
+        <link href = "{{ STATIC_URL }}css/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+        <link href = "{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css" />
+        <link href = "{{ STATIC_URL }}css/nivo-slider.css" rel="stylesheet" type="text/css" />
+        <link href = "{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" />
+        {% endcompress %}
+
+        {% compress js %}
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.tips.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cookie.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.validate.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.nivo.slider.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.tablesorter.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cycle.js"></script>
+        <script type="text/javascript" src = "{{ STATIC_URL }}js/base.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/shoppingcar.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/order.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/ordershow.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/shopping.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/sell.js"></script>
+        {% endcompress %}
+
+
+        <script language="javascript" type="text/javascript">
+            $(function() {
+                $('.num1').live( 'blur', function() {
+                    var ffid = $(this).attr("id");
+                    ffid = ffid.substr(16,2);
+                    numset(ffid, {{ STATIC_URL }}, 1);
+                });
+                $('.num2').live( 'blur', function() {
+                    var ffid = $(this).attr("id");
+                    ffid = ffid.substr(20,2);
+                    numset(ffid, {{ STATIC_URL }}, 2);
+                });
+                $('.num3').live( 'blur', function() {
+                    var ffid = $(this).attr("id");
+                    ffid = ffid.substr(21,2);
+                    numset(ffid, {{ STATIC_URL }}, 3);
+                });
+                $('#tmpscore').live( 'keyup', function() {
+                    var name = $(this).val();
+                    {% if user.is_authenticated() %}
+                    if (!isNaN(name)) {
+                        score = name * 1;
+                        price = score / 10.0
+                        myScore = {{user.get_profile().score}};
+                        nowScore = (myScore - score).toString();
+                        $('#myScore').html(nowScore);
+                        myPrice = sumBook()[1];
+                        nowPrice = (myPrice - price).toFixed(2).toString();
+                        $('#totalPrice').html(nowPrice);
+                    }
+                    {% endif %}
+                });
+                {% block readyJS %}{% endblock %}
+            }); 
+            {% block js %}{% endblock %}
+        </script>
+    </head>
+    <body onclick="clickclose()">
+        {% include 'block/fixed_frame.jinja' %}
+        <div id="body">
+            {% include 'block/header.jinja' %}
+            <iframe id='sellframe' frameborder="1" src='shopping/sellshow/'>
+            您的浏览器不支持该功能，请拨打电话进行卖书
+            </iframe>
+            <iframe id='buybehalfframe' frameborder="1" src='shopping/buybehalfshow/'>
+            您的浏览器不支持该功能，请拨打电话进行代购
+            </iframe>
+            {% if message or page %}
+            <iframe id='confirmframe' frameborder="1" src='shopping/confirmshow/?message={{message}}&page={{page}}&dealid={{dealid}}&score={{score}}'>
+            您的浏览器不支持该功能，请拨打电话进行确认
+            </iframe>
+            {% endif %}
+            <iframe id='alertframe' frameborder="1" src='shopping/alertshow/'>
+            您的浏览器不支持该功能，请拨打电话进行确认
+            </iframe>
+            <div id="content">
+                <div id="left-sidebar" class="main-column">{% block left_sidebar %}{% endblock %}</div>
+                <div id="content-main" class="main-column">{% block content_main %}{% endblock %}</div>
+                <div id="right-sidebar" class="main-column">{% block right_sidebar %}{% endblock %}</div>
+            </div>
+        </div>
+        {% include 'block/footer.jinja' %}
+    </body>
+</html>

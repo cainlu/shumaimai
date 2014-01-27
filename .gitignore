@@ -1,0 +1,10 @@
+static/image/book/*
+log/*
+shumaimai/settings.py
+shumaimai/settings.py.2.edited
+shumaimai/settings.py.edited
+dump.rdb
+*.pyc
+*.log
+.project
+.pydevproject

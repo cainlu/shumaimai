@@ -1,0 +1,25 @@
+{% extends "base/base.jinja" %}
+
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/index.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="index-main" style="padding-top:10px;">
+    <div id="navi">
+        <div id="navigation">
+        {% from 'base/book_controls.jinja' import taxonomy_list with context %}
+        {% for taxonomy in taxonomys %}
+        {{ taxonomy_list(taxonomy, is_active=(taxonomy.name!="更多发现"), children_is_hidden=(taxonomy != taxonomys[0]), children_height=210) }}
+        {% endfor %}
+        </div>
+    </div>
+    <div id="ads" class="cycle-wrapper">
+        <div id="img-nav"></div>
+        <a href="{{ url('user_register') }}"><img src="{{ STATIC_URL }}image/index_adv5.png" height="330"/></a>
+        <img src="{{ STATIC_URL }}image/index_adv3.png" height="330"/>
+        <a href="{{ url('welcome_new') }}"><img src="{{ STATIC_URL }}image/index_adv4.png" height="330"/></a>
+    </div>
+    <div id="recommend">
+        {% include 'block/recommend.jinja' %}
+    </div>
+</div>
+{% endblock %}

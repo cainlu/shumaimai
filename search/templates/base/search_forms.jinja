@@ -1,0 +1,11 @@
+{% macro search_form(width=725) %}
+<link href="{{ STATIC_URL }}css/search_form.css" rel="stylesheet" type="text/css" op="combine" />
+<div id="search-form" style="width:{{ width }}px;">
+    <form method="get" action="{{ url('search') }}">
+        <input name="query" type="text" value="{{ query }}" placeholder="快速搜索书名、作者、出版社、ISBN" style="width:{{ width-35 }}px;">
+        <div id="search-submit" onclick="$(this).parent().submit();">
+            <img src="{{ STATIC_URL }}image/search_icon.png" height="25px"></img>
+        </div>
+    </form>
+</div>
+{% endmacro %}

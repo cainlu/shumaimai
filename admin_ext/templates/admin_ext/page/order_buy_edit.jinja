@@ -1,0 +1,162 @@
+{% extends "admin_ext/base/order_base.jinja" %}
+
+{% block order_active_nav %}#order-nav-buy{% endblock %}
+
+{% block order_main %}
+<div class="container">
+    <legend><strong>{{ string('销售订单') }}</strong></legend>
+    <div class="well well-small">
+        {% from 'admin_ext/base/base_ctr.jinja' import key_value %}
+        <div>
+            {{ key_value('ID', order.id, 120, 200) }}
+            {{ key_value('状态', order.get_status_display(), 120, 400) }}
+        </div>
+        <div>
+            {{ key_value('电话', order.phone, 120, 200) }}
+            {{ key_value('地址', order.address, 120, 400) }}
+        </div>
+        <div>
+            {{ key_value('IP', order.ip, 120, 200) }}
+            {{ key_value('提交时间', order.submitTime, 120, 400) }}
+        </div>
+        <div>
+            {{ key_value('递送人员', order.deliverMan, 120, 200) }}
+            {{ key_value('递送时间', order.deliverTime, 120, 400) }}
+        </div>
+        <div>
+            {% if order.user %}
+            {{ key_value('购买者', order.user, 120, 720) }}
+            {% else %}
+            {{ key_value('购买者', '匿名', 120, 720) }}
+            {% endif %}
+        </div>
+        <div>
+            {{ key_value('备注', order.remark, 120, 720) }}
+        </div>
+        <div>
+            {{ key_value('备忘', order.resultRemark, 120, 720) }}
+        </div>
+    </div>
+    <table id="tb-data" class="table table-striped table-hover">
+        <tr>
+            <th>ID</th>
+            <th>书名</th>
+            <th>作者</th>
+            <th>版本</th>
+            <th>ISBN</th>
+            <th>现价</th>
+            <th>原价</th>
+            <th>买入价格</th>
+            <th>成交价格</th>
+            <th>状态</th>
+            <th>数量</th>
+            <th>购买类型</th>
+            <th>库存</th>
+            <th></th>
+        </tr>
+        {% for deal in order.get_book_deals() %}
+        {% set book = deal.book %}
+        {% set lgss = book.get_logistic_info() %}
+        <tr>
+            <td>{{ deal.id }}</td>
+            <td>
+                {% if book.status == 0 %}
+                {{ book.name }}
+                {% else %}
+                <a href="{{ url('admin_book_edit', id=book.id) }}" target="_blank">{{ book.name }}</a>
+                {% endif %}
+            </td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.version }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.price_old }}</td>
+            <td>{{ book.price_ori }}</td>
+            <td class="input-append">
+                <input id="price-buy" value="{{ deal.price_buy }}" type="text" class="input-mini">
+                <span class="add-on pointer" onClick="
+                         $.get('{{ url('admin_order_buy_detail_set', id=deal.id ) }}', {'price-buy':$(this).parent().find('input#price-buy').val()},function(data, textStatus){ 
+                             window.location.reload();
+                         });
+                    ">
+                    <i class="icon-ok"></i>
+                </span>
+            </td>
+            <td class="input-append">
+                <input id="price-sell" value="{{ deal.price_sell }}" type="text" class="input-mini">
+                <span class="add-on pointer" onClick="
+                        $.get('{{ url('admin_order_buy_detail_set', id=deal.id ) }}', {'price-sell':$(this).parent().find('input#price-sell').val()},function(data, textStatus){ 
+                            window.location.reload();
+                        });
+                    ">
+                    <i class="icon-ok"></i>
+                </span>
+            </td>
+            <td>{{ book.get_status_display() }}</td>
+            <td>{{ deal.number }}</td>
+            <td>{{ deal.get_type_display() }}</td>
+            <td>
+            {% for lgs in  lgss %}
+                <span class="label label-info">
+                    {{ string(lgs.position) }}
+                </span>
+            {% endfor %}
+            </td>
+            <td>
+                <i class="icon-remove pointer" onClick="
+                bootbox.confirm('确认删除？', function(result) {
+                    if(result){
+                        $.get('{{ url('admin_order_book_deal_delete') }}', {'id':{{ deal.id }}},function(data, textStatus){ 
+                            window.location.reload();
+                        });
+                    }
+                }); 
+                "
+                ></i>
+            </td>
+        </tr>
+        {% if deal.url %}
+        <tr>{{ deal.url }}</tr>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </table>
+    {% if order.status in [3, 4] %}
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container container-small">
+                <div class="btn-toolbar pull-left">
+                    <div class="btn-group btn-wrapper">
+                        <span class="btn btn-danger" onclick="
+                                $.get('{{ url('admin_order_buy_set') }}', {'id':{{ order.id }}, 'status':2},function(data, textStatus){ 
+                                    window.location.reload();
+                                });
+                            ">{{ string('丢弃') }}</span>
+                    </div>
+                </div>
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group btn-wrapper dropup">
+                        {% if order.status == 3 %}
+                        <span class="btn btn-primary" onclick="
+                                $.get('{{ url('admin_order_buy_set') }}', {'id':{{ order.id }}, 'status':4},function(data, textStatus){ 
+                                    window.location.reload();
+                                });
+                                ">
+                                {{ string('开始递送') }}
+                        </span>
+                        {% elif order.status == 4 %}
+                        <span class="btn btn-primary" onclick="
+                                $.get('{{ url('admin_order_buy_set') }}', {'id':{{ order.id }}, 'status':1},function(data, textStatus){ 
+                                    window.location.reload();
+                                });
+                                ">
+                                {{ string('完成') }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

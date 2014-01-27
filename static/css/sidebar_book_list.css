@@ -1,0 +1,42 @@
+.sidebar-book-item {
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom:1px dashed #DBDBDB;
+}
+
+.sidebar-book-img {
+    display:inline-block;
+    *display:inline;
+    width:70px;
+    height:100px;
+    padding:5px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.sidebar-book-info {
+    display:inline-block;
+    *display:inline;
+    height:110px;
+    width:100px;
+    margin:1px;
+}
+
+.sidebar-book-info-name {
+    color:#343434;
+    font-size:15px;
+    height:65px;
+    vertical-align:top;
+}
+
+.sidebar-book-info-price-ori {
+    font-size:12px;
+    height:20px;
+    vertical-align:bottom;
+}
+
+.sidebar-book-info-price-now {
+    font-size:17px;
+    height:20px;
+    bottom:0px;
+}

@@ -1,0 +1,88 @@
+{% extends "base/base.jinja" %}
+
+{% block left_sidebar %}
+{% from 'base/book_controls.jinja' import sidebar_book_list with context %}
+{{ sidebar_book_list("related-books", "热门二手教材", related_books[:5]) }}
+{% endblock %}
+
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/book.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="book" class="main-block">
+    <div id="book-main">
+        {% from 'base/controls.jinja' import key_value %}
+        <div id="book-image" class="img">
+            <div style="width:300px;margin-left:-50px;">
+                <img height="270" src="{{ url_encode(book.image_dict['cover'], mode=1, height=270) }}">
+            </div>
+        </div>
+        <div id="book-info">
+            <div class="header basic-block">{{ book.name }}</div>
+            <div class="price basic-block">
+                <div class="price-ori-value price-block">{{ key_value("原价", 50, string("￥", book.price_ori), 50) }}</div>
+                <div class="price-now-value price-block">
+                    <span>{{ key_value("麦麦价", 50, string("￥", book.price_old), 80) }}</span>
+                    <span>{{ string("节省了:") }}</span>
+                    <span style="color:red;">{{ string("￥", book.price_ori-book.price_old) }}</span>
+                </div>
+                <div class="price-block">
+                    <span style="width:50px;display:inline-block;">类别：</span>
+                    {% if book.get_taxonomy()[0] %}
+                        {% for t in book.get_taxonomy()[0].get_parent() %} 
+                        <a href="{{ url('page_taxonomy', taxonomy_id=t.id) }}">{{ t.name }}</a>
+                        <span>{{ string(">") }}</span>
+                        {% endfor %}
+                        <a href="{{ url('page_taxonomy', taxonomy_id=book.get_taxonomy()[0].id) }}">{{ book.get_taxonomy()[0].name }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="basic-block">
+                <div>
+                    {{ key_value("作者", 65, book.author, 140, value_link=search(book.author)) }}
+                    {% if book.translator %}
+                    {{ key_value("译者", 65, book.translator, 140, value_link=search(book.translator)) }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ key_value("出版社", 65, book.press, 140, value_link=search(book.press)) }}
+                    {% if book.publication_date %}
+                        {{ key_value("出版日期", 65, book.publication_date.isoformat(), 140) }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ key_value("语言", 65, book.get_language_display(), 140) }}
+                    {{ key_value("ISBN", 65, book.isbn, 140) }}
+                </div>
+                <div>
+                {% if book.version %}
+                    {{ key_value("版本", 65, book.version, 140) }}
+                {% endif %}
+                {% if book.page_number %}
+                    {{ key_value("页数", 65, string(book.page_number, ' 页'), 140) }}
+                {% endif %}
+                </div>
+                <div>
+                {% if book.size %}
+                    {{ key_value("开本", 65, string(book.size, ' 开'), 140) }}
+                {% endif %}
+                {% if book.binding %}
+                {{ key_value("装帧", 65, book.binding, 140) }}
+                {% endif %}
+                </div>
+            </div>
+            {% include 'block/buybutton.jinja' %}
+        </div>
+    </div>
+    <div id="book-details">
+        <div class="tabs">
+            <div id="book-tab-1" class="tab">{{ string('内容简介') }}</div>
+        </div>
+        <div class="tabs-content">
+            <div id="book-tab-content-1" class="tab-content">
+                <div id="book-description">{{ with_text_style(book.description, auto_indent=4) }}</div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

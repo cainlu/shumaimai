@@ -1,0 +1,61 @@
+
+#closeimg{
+	cursor:pointer;
+	position:absolute;
+	top:5px;
+	right:5px;
+	z-index:4;
+}
+
+#tickimg{
+	width:50;
+	height:50;
+	float:left;=
+	padding:0 0 100px 15px;
+}
+
+#alertimg{
+	width:50;
+	height:50;
+	float:left;
+	padding:15px 10px 0 5px;
+}
+
+#cancelbutton{
+	cursor: pointer;
+	position: absolute;
+	right: 20px;
+    border: 1px solid #000000;
+    background: #ffffff;
+}
+
+#register{
+	padding:10px;
+}
+
+.registerlabel{
+	display:inline-block;
+	*display:inline;
+	width:18%;
+	padding:5px 0 5px 15px;
+}
+
+.confirminput{
+	background-color:rgb(215,215,215);
+	height:30px;
+	border:solid 1px gray;
+	border-radius:5px;
+}
+
+#alertdiv{
+	padding:1px 5px 0 0;
+}
+
+#noticeimg{
+	width:490px;
+	height:420px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:3;
+}

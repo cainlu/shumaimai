@@ -1,0 +1,170 @@
+.ad_text{
+    text-align:left;
+    font-size:20px;
+    font-weight:bold;
+    padding:5px 0 5px 5px;
+    color:rgb(255,145,30);
+}
+
+#ad_middle{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto; 
+    width:978px;
+}
+
+#top_table{
+    width:978px;
+    text-align:center;
+    table-layout:fixed;
+	padding:0 5px 0 0;
+}
+
+#top_table2{
+    width:978px;
+    text-align:center;
+    table-layout:fixed;
+	padding:0 5px 0 0;
+}
+
+#ad_top{
+    padding:5px 0 0 0;
+}
+
+#img_top{
+    width:978px;
+    height:274px;
+}
+
+#img_middle{
+	width:978px;
+    height:41px;
+}
+
+#ad_downtable{
+    width:978px;
+    text-align:left;
+    table-layout:fixed;
+}
+
+#ad_downtable td{
+    font-size:14px;
+    text-align:left;
+}
+
+#ad_leftdown{
+    width:65%;
+    padding:0 30px 0 0;
+}
+
+.thFive{
+    width:180px;
+    height:190px;
+    padding:0 2px 0 2px;
+}
+
+.imgFive{
+    width:165px;
+    height:190px;
+}
+
+.divFive{
+    width:165px;
+    height:190px;
+    word-break:break-all;
+    overflow:hidden;
+    font-size:14px;
+}
+
+.ad_left_img{
+    width:120px;
+    height:150px;
+}
+
+.td_leftdown{
+    width:120px;
+}
+
+.td_leftdown2{
+    height:90px;
+    word-break:break-all;
+    overflow:hidden;
+}
+
+.author{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#moviebook1{
+    cursor:pointer;
+    width:140px;
+}
+
+#moviebook2{
+    cursor:pointer;
+    width:140px;
+}
+
+.agreeA{
+    cursor:pointer;
+}
+
+.disagreeA{
+    cursor:pointer;
+}
+
+#lf_text{
+    cursor:pointer;
+    width:90%;
+}
+
+.td_leftmiddle{
+    padding:0 30px 0 0;
+}
+
+.td_leftmiddle2{
+    padding:0 30px 0 100px;
+}
+
+.div_leftmiddle{
+	text-align:right;
+}
+
+#lf_context{
+	vertical-align:top;
+	padding:0 20px 0 0;
+}
+
+#add_text{
+	font-size:12px;
+	color:rgb(255,145,30);
+}
+
+#right_small{
+	font-size:14px;
+	font-weight:bold;
+}
+
+#right_big{
+	font-size:20px;
+	font-weight:bold;
+}
+
+#button1{
+    cursor:pointer;
+    background-color:white;
+    border:1px solid gray;
+    width:100%;
+    height:25px;
+    padding:0 30px 0 0;
+}
+
+.morebutton{
+	cursor:pointer;
+	background-color:white;
+	border:1px solid gray;
+	width:92%;
+	height:25px;
+}

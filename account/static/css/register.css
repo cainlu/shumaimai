@@ -1,0 +1,82 @@
+#register {
+    margin-top:50px;
+    text-align:center;
+}
+
+#register .pic {
+    display:inline-block;
+    *display:inline;
+    vertical-align:middle;
+    margin-right:80px;
+}
+
+#register .main {
+    display:inline-block;
+    *display:inline;
+    vertical-align:middle;
+    width:450px;
+    height:300px;
+    background-image:url(images/bk_reg.png);
+    background-repeat:no-repeat;
+}
+
+#register .header {
+    margin-top:7px;
+    height:36px;
+    line-height:36px;
+    color:#FFFFFF;
+    font-size:20px;
+    text-align:left;
+    padding-left:10px;
+}
+
+#register .content {
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#register .form-column {
+    width:215px;
+    display:inline-block;
+    *display:inline;
+    vertical-align:top;
+}
+
+#register .note {
+    height:37px;
+    line-height:37px;
+    vertical-align:middle;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+#register .form-field {
+    height:40px;
+}
+
+#register .form-field div{
+    vertical-align:top;
+    display:inline-block;
+    *display:inline;
+    margin:0px;
+    padding:0px;
+}
+
+#register .form-field .errorlist{
+    padding-left:30px;
+}
+
+#register .submit {
+    margin-left:250px;
+    margin-right:20px;
+    width:96px;
+    height:21px;
+}
+
+
+
+
+
+

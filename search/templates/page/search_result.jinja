@@ -1,0 +1,40 @@
+{% extends "base/base.jinja" %}
+
+{% block left_sidebar %}
+{% from 'base/book_controls.jinja' import sidebar_book_list with context %}
+{{ sidebar_book_list("hot-books", "热门二手教材", related_books[:5]) }}
+{% endblock %}
+
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/search_result.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="search-results">
+    {% if books %}
+    <div class="main-block">
+        <div id="search-title">
+            <span>{{ string('找到了') }}</span>
+            <span class="strong">{{ string(books.paginator.count) }}</span>
+            <span>{{ string('本关于') }}</span>
+            <span class="strong">{{ string(query) }}</span>
+            <span>{{ string('的书籍') }}</span>
+        </div>
+        <hr>
+        {% from 'base/controls.jinja' import pegination with context %}
+        {% for book in books %}
+        {% from 'base/book_controls.jinja' import book_list with context %}
+        {{ book_list(book) }}
+        {% endfor %}
+        {{ pegination(books) }}
+    </div>
+    {% else %}
+        <div id="search-title">
+            <span>{{ string('非常抱歉，麦麦没能找到关于') }}</span>
+            <span class="strong">{{ string(query) }}</span>
+            <span>{{ string('的书。何不试试麦麦贴心的') }}</span>
+            <span class="strong">{{ string('代购') }}</span>
+            <span>{{ string('服务') }}</span>
+        </div>
+        {% include 'block/main_no_book.jinja' %}    
+    {% endif %}
+</div>
+{% endblock %}

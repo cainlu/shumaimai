@@ -1,0 +1,57 @@
+<link href = "{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" />
+<link href = "{{ STATIC_URL }}css/confirm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cookie.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/confirm.js"></script>
+<script language="javascript" type="text/javascript">
+	$(document).ready(function() {
+		$('#footer', window.parent.document).css("opacity", ".30");
+		$('#content', window.parent.document).css("opacity", ".30");
+		$('#header', window.parent.document).css("opacity", ".30");
+		$('#fixed-frame', window.parent.document).css("opacity", "1");
+		$('.sc_up_img', window.parent.document).css("opacity", "1");
+		var confirmmain = $(window.parent.document).find('#confirmframe');
+		var confirmheight = $(document).height()+10;
+		confirmmain.height(confirmheight);
+		{% if page == 'notice' %}
+		confirmmain.css({'height': '420px', 'width':'490px'});
+		{% endif %}
+	});
+</script>
+<div>
+	<img id='closeimg' src="{{ STATIC_URL }}image/close_frame.png" onclick='closeconfirmframe()'>
+	<br>
+</div>
+<div>
+    {% if page == 'notice' %}
+        <img id='noticeimg' src="{{ STATIC_URL }}image/notice.jpg">
+    {% elif page == 'notice2' %}
+        <div style='font-size:24px;text-align:center;'>非常抱歉！</div>
+        <div>开学期间，由于订单过多，二手书的发货时间可能需要5~7天的时间，请急需买书的同学谨慎下单。对于网站造成的部分客户的订单延误，书麦麦全体成员向您表示最诚挚的道歉，我们希望为所有同学带来良好的一站式教材购买体验，虽然目前距离目标尚远，但请我们一步步改进自己，感谢各位支持！</div>
+    {% else %}
+		<img id='tickimg' src="{{ STATIC_URL }}image/tick.png">
+		<p>{% if message %}{{ message }}{% endif %}
+		{% if page == 'buy' %}
+		<font size=5>订单提交成功!</font><br>
+		{% if user.is_authenticated() %}
+		<font size=5><strong>此次消费完成后获得{{score}}点积分!</strong></font><br>
+		{% endif %}
+		<font size=3>您的订单号为{{dealid}}，请记住这个号码，<br>
+		您也可以至<a href='#' onclick='parentorder()'>我的订单</a>中查询该号码。<br>
+		如有任何疑问，请致电麦麦客服1381-6436-147，<br>祝您购物愉快O(∩_∩)O。</font>
+		{% elif page == 'sell' %}
+		<font size=5>订单提交成功!</font><br>
+		<font size=3>如有任何疑问，请致电麦麦客服1381-6436-147，<br>祝您购物愉快O(∩_∩)O。 </font>
+		{% elif page == 'messageboard'%}
+		<font size=5>留言提交成功!</font><br>
+		<font size=3>如有任何疑问，请致电麦麦客服1381-6436-147，<br>祝您购物愉快O(∩_∩)O。</font>
+		{% endif %}</p>
+		{% if not user.is_authenticated() %}
+		<div id='register'>
+			<div style="text-align:left;">
+				<a href="{{ url('user_register') }}" target="_top"><font size=5>快速注册</font></a><font size=2>&nbsp;&nbsp;让买书、卖书更快更划算！</font>
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+</div>

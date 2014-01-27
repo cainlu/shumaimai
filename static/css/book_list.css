@@ -1,0 +1,90 @@
+#book-list-item {
+    vertical-align:middle;
+    border-bottom:1px solid #DBDBDB;
+}
+
+#book-list-img {
+    padding:10px;
+    margin:10px;
+    display:inline-block;
+    *display:inline;
+    text-align:center;
+    width:110px;
+    height:140px;
+    cursor:pointer;
+}
+
+#book-list-info {
+    vertical-align:top;
+    width:490px;
+    display:inline-block;
+    *display:inline;
+    padding:5px;
+    font-size:13px;
+    color:#555555;
+}
+
+#book-list-name {
+    text-align:left;
+}
+
+#book-list-detail {
+    text-align:left;
+}
+
+#book-list-header {
+    font-size:21px;
+    text-align:left;
+    padding-top:5px;
+    padding-left:0px;
+    padding-bottom:15px;
+}
+
+#book-list-header a {
+    color:#555555;
+    font-weight:bold;
+}
+
+#book-list-item-price {
+    text-align:left;
+    vertical-align:middle;
+    line-height:40px;
+}
+
+.price-ori-value {
+    float:left;
+    display:inline-block;
+    *display:inline;
+    width:130px;
+}
+
+.price-now-value .value {
+    font-size:18px;
+    font-family:Arial;
+}
+
+.price-now-value {
+    float:left;
+    display:inline-block;
+    *display:inline;
+}
+
+#book-list-item #book-list-footer {
+    display:inline-block;
+    *display:inline;
+    float:right;
+    width:120px;
+}
+
+#book-list-item .shopping-buy-form {
+    text-align:right;
+    margin-right:30px;
+}
+
+#book-list-item .num {
+    display:none;
+}
+
+#book-list-item .num-label {
+    display:none;
+}

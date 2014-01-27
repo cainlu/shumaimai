@@ -1,0 +1,50 @@
+<link href = "{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" />
+<link href = "{{ STATIC_URL }}css/buybehalf.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cookie.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/base.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/shoppingcar.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/order.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/shopping.js"></script>
+<div id="topdiv">
+	<font size=5>我要代购</font>
+	<img id='closeimg' src="{{ STATIC_URL }}image/close_frame.png" onclick='closebuybehalfframe()'/>
+</div>
+<br>
+<div id="centerdiv">
+	<br>
+	<table>
+		<tr>
+			<td><font size=3>&nbsp;书名<sup><font color="red">*</font></sup></font></td>
+			<td><font size=3>&nbsp;作者<sup><font color="red">*</font></sup></font></td>
+		</tr>
+		<tr>
+			<td><input type="text" id='bookname' class='behalfinput' style='width:140px;' maxlength=100></td>
+			<td><input type="text" id='bookauthor' class='behalfinput' style='width:140px;' maxlength=100></td>
+		</tr>
+		<tr>
+			<td><font size=3>&nbsp;出版社</font></td>
+			<td><font size=3>&nbsp;数量<sup><font color="red">*</font></sup></font></td>
+		</tr>
+		<tr>
+			<td><input type="text" id='bookpublisher' class='behalfinput' style='width:140px;' maxlength=100></td>
+			<td><input type="text" id='booknum' class='behalfinput' style='width:140px;' maxlength=2></td>
+		</tr>
+		<tr>
+			<td colspan=2><font size=3>&nbsp;该书的网络连接地址</font></td>
+		</tr>
+		<tr>
+			<td colspan=2><input type="text" id='bookurl' class='behalfinput' style='width:300px;' maxlength=300></td>
+		</tr>
+	</table>
+	</div>
+</div>
+<div id="butbehalfmessage"><strong>优点</strong> (1)支持货到付款(2)零运费(3)送货到楼下</div>
+<div id="bottomdiv">
+	<img id='blueimg' src="{{ STATIC_URL }}image/bluemark.jpg">
+	<p><font size=3 color='red' id='behalffont'></font></p>
+</div>
+<hr style='width:320px;'>
+<div id="buttondiv">
+	<input type="button" class='sellingbutton' value='加入购物车' onclick='bookbehalfjudge()'>
+</div>

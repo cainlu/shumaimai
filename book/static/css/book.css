@@ -1,0 +1,114 @@
+
+#book {
+    width:670px;
+    text-align:center;
+    padding:auto;
+    margin:auto;
+    padding-top:10px;
+}
+
+#book-image {
+    padding:10px;
+    display:inline-block;
+    *display:inline;
+    text-align:center;
+    vertical-align:top;
+    width:200px;
+    height:270px;
+}
+
+#book-info {
+    padding-left:10px;
+    display:inline-block;
+    *display:inline;
+    text-align:left;
+    width:430px;
+    font-size:13px;
+}
+
+#book-info .basic-block {
+    padding:2px;
+    border-bottom:1px dashed #DBDBDB;
+    margin-bottom:5px;
+}
+
+#book-info .header {
+    text-align:left;
+    font-size:25px;
+    padding-bottom:5px;
+    margin:0px;
+}
+
+#book-info .price-block {
+    margin-top:3px;
+    margin-bottom:3px;
+}
+
+.price-now-value span{
+    display:inline-block;
+    *display:inline;
+    line-height:20px;
+    vertical-align:middle;
+}
+.price-now-value .value {
+    font-size:20px;
+    font-family:Arial;
+}
+
+#book #search-result-footer {
+    width:100%;
+    padding:5px;
+    background-color:#FFE9CA;
+}
+
+#book #search-result-footer form{
+    padding:5px;
+    padding-right:15px;
+    display:inline-block;
+    *display:inline;
+}
+
+#book #search-result-footer form input{
+    display:inline-block;
+    *display:inline;
+}
+
+
+#book-details {
+    margin-top:10px;
+    padding:5px;
+    font-size:14px;
+}
+
+.tabs {
+    text-align:left;
+    border-bottom:2px solid #F48C19;
+}
+
+.tab {
+    background-color:#F48C19;
+    padding:5px;
+    padding-top:3px;
+    padding-bottom:3px;
+    display:inline-block;
+    *display:inline;
+    color:#FFFFFF;
+    font-size:20px;
+}
+
+.tab-content {
+    padding:10px;
+    text-align:left;
+    font-size:13px;
+}
+
+#book-tab-content-1 {
+    color:#555555;
+}
+
+#book-description {
+    font-size:14px;
+    line-height:20px;
+}
+
+

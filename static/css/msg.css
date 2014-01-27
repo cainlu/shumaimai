@@ -1,0 +1,26 @@
+#msg {
+    width:500px;
+    padding:20px;
+    text-align:left;
+}
+
+#msg #message {
+    padding:10px;
+    font-size:17px;
+}
+
+
+#msg #redirect-info {
+    padding:10px;
+    font-size:12px;
+    text-align:right;
+}
+
+
+#msg #seconds {
+    font-size:15px;
+    color:#CC3300;
+}
+
+
+

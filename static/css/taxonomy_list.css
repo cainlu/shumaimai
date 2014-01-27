@@ -1,0 +1,46 @@
+.taxonomy-list {
+    width:218px;
+    padding:0px;
+    margin:0px;
+    text-align:left;
+    border-left:1px solid #F5C487;
+    border-right:1px solid #F5C487;
+}
+
+.taxonomy-list-header {
+    border-top:1px solid #F5C487;
+    background:#FFE9CA;
+    font-size:17px;
+    color:#000000;
+    padding:5px;
+    margin:0px;
+    padding-left:10px;
+    cursor:pointer;
+}
+
+.taxonomy-list-header .header-wrapper {
+    display:inline-block;
+    padding-left:10px;
+    width:85%;
+    *width:175px;
+}
+
+.taxonomy-list-header .ico-wrapper {
+    display:inline-block;
+    vertical-align:middle;
+    padding:3px;
+    left:10px;
+}
+
+.taxonomy-list-children {
+    border-top:1px solid #F5C487;
+    padding:10px;
+    font-size:15px;
+    background-color:#FFFFFF;
+}
+
+.taxonomy-list-children div{
+    padding:2px;
+}
+
+

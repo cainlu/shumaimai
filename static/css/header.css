@@ -1,0 +1,55 @@
+/*** header ***/
+#header {
+    text-align:center;
+    padding:10px;
+    padding-bottom:0px;
+}
+
+#header .logo {
+    width:170px;
+    cursor: pointer;
+    text-align:center;
+    vertical-align:bottom;
+    display:inline-block;
+    *display:inline;
+    margin-bottom:13px;
+}
+
+
+#search-bar {
+    display:inline-block;
+    *display:inline;
+    vertical-align:middle;
+    padding:3px;
+    padding-left:0px;
+}
+
+#search-bar #hot-search {
+    text-align:left;
+    font-size:13px;
+    padding:3px;
+}
+
+.function {
+    cursor: pointer;
+    vertical-align:middle;
+    width:70px;
+    line-height:30px;
+    margin-left:10px;
+    padding:2px;
+    padding-right:10px;
+    text-align:right;
+    display:inline-block;
+    *display:inline;
+    color:#FFFFFF;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:26px;
+    background-image:url('images/btn_main.png');
+    background-repeat:no-repeat;
+}
+
+.function img {
+    vertical-align:middle;
+    margin-right:3px;
+}

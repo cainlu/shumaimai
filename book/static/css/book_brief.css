@@ -1,0 +1,57 @@
+
+.book-brief {
+    width:150px;
+    height:300px;
+    padding:10px;
+    display:inline-block;
+    *display:inline;
+    text-align:center;
+    vertical-align:middle;
+    margin-top:10px;
+    border:1px solid #DDDDDD;
+}
+
+.book-brief p {
+    margin:0px;
+}
+
+.book-brief img {
+    vertical-align:center;
+    margin:auto;
+    padding:auto;
+    border:0px;
+    border-style:solid;
+    border-right:1px solid #DDDDDD;
+    border-left:1px solid #DDDDDD;
+}
+
+.bb-img {
+    text-align:center;
+    vertical-align:center;
+    margin:auto;
+    padding:auto;
+    width:130px;
+    height:150px;
+    border:1px solid #CCCCCC;
+}
+
+.bb-info {
+    height:33px;
+    font-size:14px;
+    padding:5px;
+    color:#0053A5;
+    width:130px;
+}
+
+.bb-des {
+    width:130px;
+    text-align:left;
+    background-color:#EEEEEE;
+    font-size:12px;
+    height:85px;
+    color:#777777;
+    padding:10px;
+    margin-top:5px;
+    white-space:normal;
+    text-indent:2em;
+}

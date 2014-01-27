@@ -1,0 +1,36 @@
+<link href="{{ STATIC_URL }}css/recommend.css" rel="stylesheet" type="text/css" op="combine" />
+
+
+{% from 'base/book_controls.jinja' import book_bar with context %}
+<div class="recommend">
+    <div class="recommend-head header">
+        <div class="recommend-head-title">麦麦推荐</div>
+    </div>
+    {% from 'base/book_controls.jinja' import book_brief with context %}
+    <div class="recommend-body">
+        <table style='padding:5px 5px 0 5px;'>
+            <tr>
+                <td colspan=2><a href='/book/653/'><img src="{{ STATIC_URL }}image/a11-12_v2.jpg" style='width:354px;'></a></td>
+                <td colspan=2><a href='/book/2150/'><img src="{{ STATIC_URL }}image/a13-14_v2.jpg" style='width:354px;'></a></td>
+                <td><a href='/book/32/'><img src="{{ STATIC_URL }}image/a15_v2.jpg" style='width:170px;'></a></td>
+            </tr>
+            <tr>
+                <td colspan=2><a href='/book/9/'><img src="{{ STATIC_URL }}image/a21-22_v2.jpg" style='width:354px;'></a></td>
+                <td colspan=2 rowspan=2><a href='/advertise/welcome-new/'><img src="{{ STATIC_URL }}image/a23-24-33-34_v2.jpg" style='width:354px;'></a></td>
+                <td><a href='/book/4845/'><img src="{{ STATIC_URL }}image/a25_v2.jpg" style='width:170px;'></a></td>
+            </tr>
+            <tr>
+                <td colspan=2><a href='/book/10/'><img src="{{ STATIC_URL }}image/a31-32_v2.jpg" style='width:354px;'></a></td>
+                <td><a href='/book/30/'><img src="{{ STATIC_URL }}image/a35_v2.jpg" style='width:170px;'></a></td>
+            </tr>
+        </table>
+        <table style='padding:0px 5px 0 5px;'>
+            <tr>
+                <td colspan=3><a href='/book/4827/'><img src="{{ STATIC_URL }}image/a41-42-43_v2.jpg" style='width:526px;'></a></td>
+                <td colspan=2><a href='/book/4830/'><img src="{{ STATIC_URL }}image/a44-45_v2.jpg" style='width:354px;'></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

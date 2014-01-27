@@ -1,0 +1,39 @@
+/*** search result page ***/
+
+#search-results {
+    max-width:670px;
+    padding-top:10px;
+}
+
+#search-results .main-block {
+    padding:2px;
+}
+
+#search-results #search-title {
+    width:97%;
+    text-align:left;
+    background-color:rgb(225,255,244);
+    border:1px solid rgb(144,244,181);
+    color:#000000;
+    font-size:13px;
+    padding:5px;
+}
+
+#search-results #search-title .strong {
+    color:rgb(0,165,64);
+    font-size:20px;
+    display:inline-block;
+    *display:inline;
+    padding-left:2px;
+    padding-right:2px;
+}
+
+
+#search-results .weight {
+    color:#000000;
+}
+
+#search-results #search-title .weight {
+    font-size:20px;
+}
+

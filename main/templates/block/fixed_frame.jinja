@@ -1,0 +1,81 @@
+<link href="{{ STATIC_URL }}css/fixed_frame.css" rel="stylesheet" type="text/css" op="combine" />
+
+{% from 'base/controls.jinja' import dialog with context %}
+
+<div id="fixed-frame">
+    <div id="fixed-frame-first" onclick="event.cancelBubble=true;">
+        <div id="fixed-frame-first-main" class="fixed-frame-first-base">
+            <div id="ff-log">
+            {% if user.is_authenticated() %}
+                <span class="ff-big"><span>{{ user.username }}</span></span>
+                <span class="ff-small"><a href="{{ url('user_profile') }}">[修改]</a></span>
+                <span class="ff-small"><a href="{{ url('user_logout') }}">[注销]</a></span>
+            {% else %}
+                <div class="ff-big"><a href="{{ url('user_login')}}">登录</a></div>
+                <div class="ff-big"><a href="{{ url('user_register') }}">注册</a></div>
+            {% endif %}
+            </div>
+            <span id="ff-sc" class="menu-head-normal"
+                onClick="
+                    if( this.className == 'menu-head-normal'){
+                        this.className='menu-head-visited';
+                        $('#ff-sc').children('#sc-logo').attr('src', '{{ STATIC_URL }}image/sc_logo_orange.png');
+                        $('#ff-sc').children('#sc-ico-arrow').attr('src', '{{ STATIC_URL }}image/ico_up_arrow_orange.png');
+                        $('#fixed-frame-first-main').css('border-bottom-color','#FFFFFF');
+                        $('#fixed-frame-second').show();
+                    }else{
+                        this.className='menu-head-normal';
+                        $('#ff-sc').children('#sc-logo').attr('src', '{{ STATIC_URL }}image/sc_logo.png');
+                        $('#ff-sc').children('#sc-ico-arrow').attr('src', '{{ STATIC_URL }}image/ico_down_arrow.png');
+                        $('#fixed-frame-first-main').css('border-bottom-color','#282828');
+                        $('#fixed-frame-second').hide();
+                    }
+                    {% if user.is_authenticated() %}
+                        $.cookie('score', {{user.get_profile().score}}, {path:'/' });
+                        shoppingCarShow({{ STATIC_URL }});
+                        {% if user.get_profile().phone %}
+                        $('#tmpphone').val('{{ user.get_profile().phone }}');
+                        $('#order-phone').val('{{ user.get_profile().phone }}');
+                        {% else %}
+                        var phone = $.cookie('phone');
+                        $('#tmpphone').val(phone);
+                        $('#order-phone').val(phone);
+                        {% endif %}
+                        {% if user.get_profile().address %}
+                        $('#tmpaddress').val('{{ user.get_profile().address }}')
+                        $('#order-address').val('{{ user.get_profile().address }}');
+                        {% else %}
+                        var address = $.cookie('address');
+                        $('#tmpaddress').val(address);
+                        $('#order-address').val(address);
+                        {% endif %}
+                    {% else %}
+                        $.cookie('score', -1, {path:'/' });
+                        shoppingCarShow({{ STATIC_URL }});
+                        var phone = $.cookie('phone');
+                        var address = $.cookie('address');
+                        $('#tmpphone').val(phone);
+                        $('#order-phone').val(phone);
+                        $('#tmpaddress').val(address);
+                        $('#order-address').val(address);
+                    {% endif %}
+                "
+                >
+                <img id="sc-logo" src="{{ STATIC_URL }}image/sc_logo.png" height="14"></img>
+                <span>购物车</span>
+                <img id="sc-ico-arrow" src="{{ STATIC_URL }}image/ico_down_arrow.png" height="8"></img>
+                <img src="{{ STATIC_URL }}image/sc_up.png" class='sc_up_img' id='sc_up_img1'></img>
+                <img src="{{ STATIC_URL }}image/sc_up.png" class='sc_up_img' id='sc_up_img2'></img>
+                <img src="{{ STATIC_URL }}image/sc_up.png" class='sc_up_img' id='sc_up_img3'></img>
+            </span>
+            <span class="ff-sep">{{ string('|') }}</span>
+            <span id="ff-order" onClick="window.location.href='{{ url('ordershow') }}';">
+                <img src="{{ STATIC_URL }}image/order_logo.png" height="14"></img>
+                <span>我的订单</span>
+            </span>
+            <span id="ff-phone">{{ string('客服电话：1381-6436-147       ') }}</span>
+        </div>
+        <div id="fixed-frame-border"></div>
+    </div>
+    <div id="fixed-frame-second"></div>
+</div>

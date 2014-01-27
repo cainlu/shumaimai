@@ -1,0 +1,35 @@
+<link href="{{ STATIC_URL }}css/main_no_book.css" rel="stylesheet" type="text/css" op="combine" />
+
+<div id="no-book">
+    <div id="book-no-result-header"><img src="{{ STATIC_URL }}image/title_no_result.png" width="655"></div>
+    <div id="book-no-result-body">
+    <table id="buybehalftable">
+        <tr>
+            <td><font size=3>书&nbsp;名<sup><font color="red">*</font></sup></font></td>
+            <td class="right"><font size=3>作&nbsp;者<sup><font color="red">*</font></sup></font></td>
+        </tr>
+        <tr>
+            <td><input type="text" id='bookname' class='behalfinput2' style='width:300px;' maxlength=100 placeholder="请填入你想购买的图书书名"></td>
+            <td class="right"><input type="text" id='bookauthor' class='behalfinput2' style='width:300px;' maxlength=100 placeholder="请填入你想购买的图书作者"></td>
+        </tr>
+        <tr>
+            <td><font size=3>出版社</font></td>
+            <td class="right"><font size=3>数&nbsp;量<sup><font color="red">*</font></sup></font></td>
+        </tr>
+        <tr>
+            <td><input type="text" id='bookpublisher' class='behalfinput2' style='width:300px;' maxlength=100 placeholder="知道书是哪个出版社的吗"></td>
+            <td class="right"><input type="text" id='booknum' class='behalfinput2' style='width:300px;' maxlength=2 placeholder="想买几本呢"></td>
+        </tr>
+        <tr>
+            <td colspan=2><font size=3>该书的网络连接地址</font></td>
+        </tr>
+        <tr>
+            <td colspan=2><input type="text" id='bookurl' class='behalfinput2' style='width:655px;' maxlength=300 placeholder="要是有网址就再好不过了"></td>
+        </tr>
+    </table>
+    <br><br>
+    <div id="buttondiv2">
+        <input type="button" class='sellingbutton' value='加入购物车' onclick='bookbehalfjudge()'>
+    </div>
+    </div>
+</div>

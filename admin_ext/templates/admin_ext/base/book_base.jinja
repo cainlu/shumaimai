@@ -1,0 +1,27 @@
+{% extends "admin_ext/base/main.jinja" %}
+
+{% block active_nav %}#nav-book{% endblock %}
+
+{% block main %}
+<script type="text/javascript">
+    $(function(){
+            $('{% block book_active_nav %}#book-nav-home{% endblock %}').addClass('active');
+    });
+</script>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li id="book-nav-home">
+            <a href="{{ url('admin_book_home') }}">{{ string('书本首页') }}</a>
+        </li>
+        <li id="book-nav-list">
+            <a href="{{ url('admin_book_list') }}">{{ string('书本列表') }}</a>
+        </li>
+        <li id="book-nav-isbn-add">
+            <a href="{{ url('admin_book_isbn_add') }}">{{ string('书本扫描') }}</a>
+        </li>
+    </ul>
+    {% block book_main %}{% endblock %}
+</div>
+
+
+{% endblock %}

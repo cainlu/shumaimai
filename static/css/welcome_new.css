@@ -1,0 +1,57 @@
+.ad_text{
+	text-align:left;
+	font-size:20px;
+	font-weight:bold;
+	padding:5px 0 5px 5px;
+	color:rgb(255,145,30);
+}
+
+.more_book {
+	text-align:left;
+	font-size:14px;
+	padding:5px 0 5px 5px;
+	color:rgb(255,145,30);
+}
+
+.indexbutton{
+	height:40px;
+	width:240px;
+	border:0;
+	cursor: pointer;
+	color:#FFFFFF;
+	font-size:12pt;
+	font-weight:600;
+	background-image:url(images/sellingbutton.png);
+}
+
+.indexbutton:hover{
+	background-image:url(images/shoppinghover2.png);
+}
+
+.new_td{
+	width:135px;
+}
+
+.new_td_name{
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.new_price_ori{
+	font-size:10pt;
+}
+
+.new_price_old{
+	font-size:14pt;
+}
+
+#suggest{
+	text-align:center;
+}
+
+.context{
+	height:160px;
+	width:950px;
+	margin:0 0 15px 0;
+}

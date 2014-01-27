@@ -1,0 +1,62 @@
+{% macro pegination(items, page_par_name='page', manual_page=None, other_data_dict={}, onepage_hidden=True) %}
+{% set base_url = request.get_full_path() %}
+{% if manual_page %}
+{% set cur = manual_page['page'] %}
+{% set num_pages = manual_page['num_pages'] %}
+{% else %}
+{% set cur = items.number %}
+{% set num_pages = items.paginator.num_pages %}
+{% endif %}
+{% set min, max = get_page_range(cur, 1, num_pages) %}
+{% if not onepage_hidden or max > 1 %}
+    <div class="pagination pagination-right">
+        <ul>
+            {% if cur == min %}
+            <li class="disabled"><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur})) }}">{{ string('«') }}</a></li>
+            {% else %}
+            <li><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur-1})) }}">{{ string('«') }}</a></li>
+            {% endif %}
+            {% for i in range(min, max+1) %}
+            {% if i != cur %}
+            <li><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:i})) }}">{{ i }}</a></li>
+            {% else %}
+            <li class="active"><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:i})) }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if cur == max %}
+            <li class="disabled"><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur})) }}">{{ string('»') }}</a></li>
+            {% else %}
+            <li><a href="{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur+1})) }}">{{ string('»') }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
+{% endmacro %}
+
+{% macro key_value(key, value, key_len=80, value_len=200, key_link=None, value_link=None, out_link=False) %}
+<div style="display:inline-block;">
+    <span style="display:inline-block; text-align:left; width:{{ key_len }}px;">
+        {% if key_link %}
+        <a href={{ key_link }}>{{ string(key, ': ') }}</a>
+        {% else %}
+        {{ string(key, ': ') }}
+        {% endif %}
+    </span>
+    <span style="display:inline-block; text-align:left; width:{{ value_len }}px;">
+        {% if value_link %}
+        {% if out_link %}<a href={{ value_link }} target="_blank">{% else %}<a href={{ value_link }}>{% endif %}{{ string(value) }}</a>
+        {% else %}
+        {{ string(value) }}
+        {% endif %}
+    </span>
+</div>
+{% endmacro %}
+
+{% macro search_form() %}
+<div>
+    <form id="search-form" class="input-append navbar-search  block pull-left" method="get" action="{{ request.get_full_path() }}">
+        <input id="search-input" name="query" type="text" placeholder="Search" value="{{ url_get(request.get_full_path(), 'query') }}">
+        <span class="btn add-on" onClick="$('#search-form').submit();"><i class="icon-search"></i></span>
+    </form>
+</div>
+{% endmacro %}

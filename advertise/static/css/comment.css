@@ -1,0 +1,121 @@
+#leftdiv{
+    float:left;
+    width:680px;
+    font-size:14px;
+}
+
+#rightdiv{
+    float:left;
+    width:250px;
+    padding:0 0 0 20px;
+    font-size:14px;
+}
+
+#topdiv{
+    text-align:left;
+    padding:20px 0 0 0;
+}
+
+#movieimg{
+    height:250px;
+    width:200px;
+}
+
+#imgdiv{
+    float:left;
+    width:180px;
+}
+
+#titlediv{
+    padding:5px 0 15px 10px;
+}
+
+#textdiv{
+    width:600px;
+    height:200px;
+    overflow:hidden;
+    padding:0 0 0 10px;
+}
+
+#namediv{
+    float:left;
+    width:480px;
+    font-weight:bold;
+    font-size:18px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#agreediv{
+    float:left;
+    width:180px;
+}
+
+.agreeA{
+    cursor:pointer;
+}
+
+.disagreeA{
+    cursor:pointer;
+}
+
+#bottomdiv{
+    text-align:left;
+}
+
+#namediv2{
+    float:left;
+    width:300px;
+    font-weight:bold;
+    font-size:18px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#authordiv{
+    color:gray;
+    font-size:14px;
+    padding:20px 0 20px 0;
+}
+
+#textdiv2{
+    Line-height:24px;
+	text-align:left;
+}
+
+#textdiv2  img{
+	float:left;
+	width:100%;
+}
+
+.imgFive{
+    height:140px;
+    width:100px;
+    float:left;
+	padding:0 10px 0 20px;
+}
+
+#right_back{
+    text-align:left;
+	border: 1px solid rgb(255, 145, 30);
+}
+
+#right_top{
+    font-size:20px;
+	background-color:rgb(255,233,202);
+	padding:10px 0 10px 0;
+}
+
+#right_down{
+	padding:0 0 0 3px;
+}
+	
+.right_text{
+    font-size:14px;
+}
+
+.commentimgdiv{
+	text-align:center;
+}

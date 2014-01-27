@@ -1,0 +1,15 @@
+###
+# This file is about what is needed to set up the site.
+###
+
+environment:
+    python 2.7.3
+    django 1.4
+
+extra apps:
+    django-redis-cache
+    django-simple-captcha-master
+    jinja2
+    django-jinja 0.9 
+    django-grappelli
+

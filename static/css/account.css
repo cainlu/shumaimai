@@ -1,0 +1,164 @@
+/*** base css ***/
+.clear {
+    clear:both;
+}
+
+body {
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:0px;
+    margin-top:0px;
+    padding:auto;
+    padding-bottom:0px;
+    font-family:"微软雅黑",sans-serif;
+    height:100%;
+}
+
+#body {
+    width:960px;
+    margin:0 auto;
+    background-color:#FFFFFF;
+    padding:20px;
+    min-height:900px;
+    color:#555555;
+    text-align:center;
+}
+
+a {
+    color:#005EAB;
+    text-decoration: none; 
+}
+
+a:hover {
+    color:#F48C19 !important;
+    text-decoration: underline; 
+}
+
+.header {
+    font-family:"微软雅黑",sans-serif;
+}
+
+div {
+    overflow:hidden;
+    zoom:1;
+}
+
+div.img {
+    border:1px solid #CCCCCC; }
+
+input.num {
+    width:30px !important;
+    text-align:center;
+}
+
+p {
+    margin:0px;
+    padding:2px;
+}
+
+hr {
+    border: 1px solid #795B3C;
+}
+
+tr.odd {
+    background-color:#FFFFFF;
+}
+
+tr.even {
+    background-color:#EEEEEE;
+}
+
+.btn {
+    color:#FFFFFF;
+    font-family:"Trebuchet MS", sans-serif;
+    cursor: pointer;
+    padding:5px;
+    background-image:url('images/btn_account.png');
+    background-repeat:repeat-x;
+    text-align:center;
+    display:inline-block;
+    *display:inline;
+    font-size:20px;
+}
+
+.main-column {
+    display:inline-block;
+    *display:inline;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+
+/*** form ***/
+form {
+    text-align:left;
+}
+
+.form-block {
+    border:1px solid #FBBA15;
+}
+
+form label {
+    display:inline-block;
+    line-height:24px;
+    margin-right:5px;
+    width:70px;
+}
+
+.required label:after {
+    content:"*";
+    font-size:12px;
+    color:red;
+}
+
+form input[type=text] {
+    width:120px;
+}
+
+form input[type=password] {
+    width:120px;
+}
+
+form select {
+    background: none repeat scroll 0 0 #FFFFFF;     
+    border: 1px solid #000000;
+    cursor: pointer
+}
+
+form .submit {
+    padding:10px;
+}
+    
+.errorlist {
+    color:red;
+    font-size:11px;
+    text-align:left;
+    margin:0px;
+}
+
+/* captcha */
+form #id_captcha_1 {
+    width:40px;
+    margin-right:10px;
+}
+
+
+#header {
+    padding:auto;
+    margin:auto;
+    margin-top:30px;
+    width:750px;
+    text-align:left;
+}
+
+#header .logo {
+    cursor: pointer;
+    text-align:center;
+    vertical-align:bottom;
+    display:inline-block;
+    *display:inline;
+    margin-bottom:13px;
+}
+
+

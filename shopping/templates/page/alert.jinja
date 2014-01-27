@@ -1,0 +1,12 @@
+<link href = "{{ STATIC_URL }}css/buttonstyle.css" rel="stylesheet" type="text/css" />
+<link href = "{{ STATIC_URL }}css/confirm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/jquery.cookie.js"></script>
+<script type="text/javascript" src = "{{ STATIC_URL }}js/confirm.js"></script>
+<div>
+	<img id='closeimg' src="{{ STATIC_URL }}image/close_frame.png" onclick='closealertframe()'>
+</div>
+<div id="alertdiv">
+	<img id='alertimg'>
+	<p><br><font id='alertmsg' size=3/></p>
+</div>

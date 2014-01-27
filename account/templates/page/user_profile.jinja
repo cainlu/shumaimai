@@ -1,0 +1,54 @@
+{% extends "base/base.jinja" %}
+
+{% block left_sidebar %}
+{% from 'base/book_controls.jinja' import sidebar_book_list with context %}
+{{ sidebar_book_list("hot-books", "热门畅销书籍", hot_books) }}
+{% endblock %}
+
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/user_profile.css" rel="stylesheet" type="text/css" op="combine" />
+<div class="main-block">
+    <div class="content">
+        <div class="block">
+            <div class="head">基本信息</div>
+            <div class="content">
+                <form id="form-user-profile" method="post" action="{{ url('user_profile') }}">
+                    {% csrf_token %}
+                    <div class="form-field">
+                    {% for name, field in user_form.fields.items() %}
+                        <div class="field">{{ user_form[name].label_tag() }}{{ user_form[name] }}</div>
+                        <div class="errorlist">{{ user_form[name].errors.as_text() }}</div>
+                    {% endfor %}
+                    </div>
+                    <div>
+                        <div class="submit" onClick="$('#form-user-profile').submit();">更新信息</div>
+                        {% if user_profile_note %}
+                        <div class="note">{{ user_profile_note }}</div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="block">
+            <div class="head">密码修改</div>
+            <div class="content">
+                <form id="form-password-change" method="post" action="{{ url('user_password_change') }}">
+                    {% csrf_token %}
+                    {% for name, field in password_change_form.fields.items() %}
+                    <div class="form-field">
+                        <div class="field">{{ password_change_form[name].label_tag() }}{{ password_change_form[name] }}</div>
+                        <div class="errorlist">{{ password_change_form[name].errors.as_text() }}</div>
+                    </div>
+                    {% endfor %}
+                    <div>
+                        <div class="submit" onClick="$('#form-password-change').submit();">确认修改</div>
+                        {% if password_change_note %}
+                        <div class="note">{{ password_change_note }}</div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

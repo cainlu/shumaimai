@@ -1,0 +1,123 @@
+{% extends "base/base.jinja" %}
+
+{% block head %}
+<link href="{{ STATIC_URL }}css/ordershow.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block readyJS %}
+$("#table-id").tablesorter();
+$('#default-order').click();
+$('#default-order').click();
+{% endblock %}
+
+{% block content_main %}
+<br>
+<table id="table-id">
+	<thead>
+	<tr id="first-tr">
+		<th id='first-th' width="20%">订单号<img class='arrow' src='{{ STATIC_URL }}image/blue_arrow_down.png'></th>
+		<th width="20%">总价<img class='arrow' src='{{ STATIC_URL }}image/black_arrow_down.png'></th>
+		<th id='default-order' width="22%">下单时间<img class='arrow' src='{{ STATIC_URL }}image/black_arrow_down.png'></th>
+		<th width="22%">完成时间<img class='arrow' src='{{ STATIC_URL }}image/black_arrow_down.png'></th>
+		<th width="16%">订单状态<img class='arrow' src='{{ STATIC_URL }}image/black_arrow_down.png'></th>
+	</tr>
+	</thead>
+	{% if deals %}
+	<tbody>
+	{% for deal in dealkeys %}
+	<tr id="deal{{deal.id}}-tr" class='deals-tr'>
+		<td>{{deal.id}}</td>
+		<td>
+		￥{{deals[deal]['totalPrice']}}
+		<font size=2 color='red'>(省￥{{deals[deal]['savePrice']}})</font>
+		</td>
+		<td>{{deals[deal]['submitTime']}}</td>
+		<td>
+		{% if deals[deal]['finishTime'] == None %}
+			尚未完成
+		{% else %}
+			{{deals[deal]['finishTime']}}
+		{% endif %}
+		</td>
+		<td id='statustd{{deal.id}}'>
+		{% if deal.status == 0 %}未知{% endif %}
+		{% if deal.status == 1 %}已完成{% endif %}
+		{% if deal.status == 2 %}丢弃{% endif %}
+		{% if deal.status == 3 %}
+			处理中
+			{% if user.is_authenticated() %}
+			（取消<img src='/static/image/close_frame.png' onclick='cancelorder({{deal.id}})' class='cancelorder'/>）
+			{% endif %}
+		{% endif %}
+		{% if deal.status == 4 %}递送中{% endif %}
+		{% if deal.status == 5 %}取消{% endif %}
+		</td>
+	</tr>
+	<script language="javascript" type="text/javascript">
+		deal{{deal.id}} = "\
+		<tr class='book-detail'>\
+			<td colspan=5>\
+				<table class='table-detail'>\
+					<tr class='first-tr-detail'>\
+						<th width='10%'></th>\
+						<th width='30%'>书本名称</th>\
+						<th width='20%'>作者</th>\
+						<th width='15%'>麦麦价</th>\
+						<th width='10%'>数量</th>\
+						<th width='15%'>小计</th>\
+					</tr>\
+					{% for tmpbook in deals[deal]['books'].keys() %}\
+					<tr>\
+						<td><img height='50' width='40' src={{tmpbook.image_dict['cover']}}></td>\
+						<td>\
+						<font style='color:rgb(56,103,131);'>{{tmpbook.name}}</font>\
+						{% if tmpbook.price_old == 0 %}\
+						<font style='color:red;'>(代购)</font>\
+						{% endif %}\
+						</td>\
+						<td>{{tmpbook.author}}</td>\
+						<td>\
+						{% if tmpbook.price_old == 0 %}\
+						未知\
+						{% else %}\
+						{{tmpbook.price_old}}\
+						{% endif %}\
+						</td>\
+						<td>{{deals[deal]['books'][tmpbook]}}</td>\
+						<td>\
+						{% if tmpbook.price_old == 0 %}\
+						未知\
+						{% else %}\
+						{{tmpbook.price_old * deals[deal]['books'][tmpbook]}}\
+						{% endif %}\
+						</td>\
+					</tr>\
+					{% endfor %}\
+					<tr>\
+						<td colspan=6>\
+							<div style='float:left;'>&nbsp;&nbsp;&nbsp;收货信息&nbsp;&nbsp;&nbsp;</div>\
+							<div style='float:left;'>联系电话：{{deal.phone}}&nbsp;&nbsp;&nbsp;</div>\
+							<div style='float:left;'>收货地址：{{deal.address}}&nbsp;&nbsp;&nbsp;</div>\
+							<div style='float:right;'>\
+								<b>合计：</b>\
+								<font size=4 color='red'>￥{{deals[deal]['totalPrice']}}&nbsp;&nbsp;&nbsp;</font>\
+							</div>\
+						</td>\
+					</tr>\
+				</table>\
+			</td>\
+		</tr>"
+		$(document).ready(function() {
+			$("#deal{{deal.id}}-tr").click(function() {
+				$('.book-detail').remove();
+				$(deal{{deal.id}}).insertAfter($("#deal{{deal.id}}-tr"));
+				window.dealId = {{deal.id}};
+				window.dealDetail = deal{{deal.id}};
+			});
+		}); 
+	</script>
+	{% endfor %}
+	</tbody>
+	{% endif %}
+</table>
+{% endblock %}

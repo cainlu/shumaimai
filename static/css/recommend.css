@@ -1,0 +1,34 @@
+.recommend-head {
+    display:inline-block;
+    *display:inline;
+    text-align:center;
+    width:895px;
+    text-align:left;
+    background-image:url(images/bk_rec.png);
+    background-repeat:repeat-y;
+}
+
+.recommend-head-title {
+    padding:5px;
+    width:74px;
+    color:#000000;
+    font-size:17px;
+    text-align:center;
+    padding:8px;
+    margin-left:17px;
+    background-image:url(images/bk_rec_title.png);
+    background-repeat:repeat-x;
+}
+
+.recommend-body {
+    text-align:center;
+    background-image:url(images/bk_rec_body.png);
+    background-repeat:no-repeat;
+    background-position:top center;
+    width:900px;
+    height:770px;
+}
+
+
+
+

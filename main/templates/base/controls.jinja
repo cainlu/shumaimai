@@ -1,0 +1,86 @@
+{% macro drawer(on_click_function) %}
+<div class="drawer" onclick="{{ on_click_function }}">
+    <a href="#"><img src="{{ STATIC_URL }}image/drawer.jpg" width="70" height="30"></img></a>
+</div>
+{% endmacro %}
+
+{% macro key_value(key, key_length, value, value_length, key_link='#', value_link='#') %}
+<div class="key" style="display:inline-block;*display:inline;width:{{ key_length }}px;">
+    {% if key_link == '#' %}
+    {{ key }} : 
+    {% else %}
+    <a href='{{ key_link }}'>{{ key }} : </a>
+    {% endif %}
+</div>
+<div class="value" style="display:inline-block;*display:inline;width:{{ value_length }}px;"> 
+    {% if value_link == '#' %}
+    {{ value }} 
+    {% else %}
+    <a href='{{ value_link }}'>{{ value }}</a>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro pegination(items, page_par_name='page', manual_page=None, other_data_dict={}, onepage_hidden=True) %}
+<link href="{{ STATIC_URL }}css/pagination.css" rel="stylesheet" type="text/css" op="combine" />
+
+{% set base_url = request.get_full_path() %}
+{% set pagination_length = 4 %}
+{% if manual_page %}
+{% set cur = manual_page['page'] %}
+{% set num_pages = manual_page['num_pages'] %}
+{% else %}
+{% set cur = items.number %}
+{% set num_pages = items.paginator.num_pages %}
+{% endif %}
+{% set min, max = get_page_range(cur, 1, num_pages) %}
+{% if not onepage_hidden or max > 1 %}
+    <div id="pagination">
+        {% if cur != min %}
+        <span class="page-num" onClick="window.location.href='{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur-1})) }}';">{{ string('«') }}</span>
+        {% endif %}
+        {% for i in range(min, max+1) %}
+        {% if i != cur %}
+        <span class="page-num" onClick="window.location.href='{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:i})) }}';">{{ i }}</span>
+        {% else %}
+        <span class="current page-num" onClick="window.location.href='{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:i})) }}';">{{ i }}</span>
+        {% endif %}
+        {% endfor %}
+        {% if cur != max %}
+        <span class="page-num" onClick="window.location.href='{{ url_encode(base_url, **dict_add(other_data_dict, {page_par_name:cur+1})) }}';">{{ string('»') }}</span>
+        {% endif %}
+    </div>
+{% endif %}
+{% endmacro %}
+
+
+{% macro dialog(id, src, note="浏览器不支持") %}
+<script type="text/javascript" src = "{{ STATIC_URL }}js/dialog.js" op="combine" ></script>
+<link href="{{ STATIC_URL }}css/dialog.css" rel="stylesheet" type="text/css" op="combine" /> 
+{% endmacro %}
+
+{% macro msg(message, url="/", seconds=5) %}
+<script type="text/javascript" src = "{{ STATIC_URL }}js/msg.js" op="combine" ></script>
+<link href="{{ STATIC_URL }}css/msg.css" rel="stylesheet" type="text/css" op="combine" /> 
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var seconds = {{ seconds }};
+        var url = "{{ url }}";
+        if(url=="")
+            url="/"
+        seconds_display = $("#seconds");
+        re(url, seconds, seconds_display);
+    });
+</script>
+<div id="msg" class="main-block">
+    <div id="message">{{ message }}</div>
+    <hr>
+    {% if url=='' %}
+        {% set url='/' %}
+    {% endif %}
+    <div id="redirect-info">本页面将在<span id="seconds">{{ string(" ", seconds, " ") }}</span>秒后跳转.如没跳转请<a href="{{ url }}">{{ string(" 点击这里 ") }}</a></div>
+</div>
+{% endmacro %}
+
+
+

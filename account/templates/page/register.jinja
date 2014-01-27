@@ -1,0 +1,61 @@
+{% extends "base/account.jinja" %}
+{% block content_main %}
+<link href="{{ STATIC_URL }}css/register.css" rel="stylesheet" type="text/css" op="combine" />
+<script type='text/javascript' src='{{ STATIC_URL }}js/captcha.js'></script>
+<div id="register" class="main-block">
+    <div class="pic">
+        <img width="300" height="300" src="{{ STATIC_URL }}image/register.jpg"></img>
+    </div>
+    <div class="main">
+        <div class="header">注册</div>
+        <div class="content">
+            <form id="form-register" method="post" action="{{ url('user_register') }}">
+                {% csrf_token %} 
+                <div class="form-column required">
+                    <div class="note">必填</div>
+                    <div class="form-field">
+                        <div>{{ register_form['username'].label_tag() }}{{ register_form['username'] }}</div>
+                        <div class="errorlist">{{ register_form['username'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['password'].label_tag() }}{{ register_form['password'] }}</div>
+                        <div class="errorlist">{{ register_form['password'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['password_again'].label_tag() }}{{ register_form['password_again'] }}</div>
+                        <div class="errorlist">{{ register_form['password_again'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['captcha'].label_tag() }}{{ register_form['captcha'] }}</div>
+                        <div class="errorlist">{{ register_form['captcha'].errors.as_text() }}</div>
+                    </div>
+                </div>
+                <div class="form-column optional">
+                    <div class="note">选填</div>
+                    <div class="form-field">
+                        <div>{{ register_form['address'].label_tag() }}{{ register_form['address'] }}</div>
+                        <div class="errorlist">{{ register_form['address'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['phone'].label_tag() }}{{ register_form['phone'] }}</div>
+                        <div class="errorlist">{{ register_form['phone'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['email'].label_tag() }}{{ register_form['email'] }}</div>
+                        <div class="errorlist">{{ register_form['email'].errors.as_text() }}</div>
+                    </div>
+                    <div class="form-field">
+                        <div>{{ register_form['school'].label_tag() }}{{ register_form['school'] }}</div>
+                        <div class="errorlist">{{ register_form['school'].errors.as_text() }}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="btn submit" 
+                        onClick="$('#form-register').submit();"
+                        >{{ string("注册") }}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
