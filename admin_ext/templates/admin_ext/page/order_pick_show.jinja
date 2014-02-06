@@ -9,6 +9,8 @@
             <th>书名</th>
             <th>作者</th>
             <th>出版社</th>
+            <th>isbn</th>
+            <th>库位号</th>
             <th>数量</th>
         </tr>
         {% for book_num in book_nums.keys() %}
@@ -26,6 +28,23 @@
         	{% for book in books %}
         		{% if book.id == book_num %}
         			<td>{{ book.press }}</td>
+        		{% endif %}
+        	{% endfor %}
+        	{% for book in books %}
+        		{% if book.id == book_num %}
+        			<td>{{ book.isbn }}</td>
+        		{% endif %}
+        	{% endfor %}
+        	{% for book in books %}
+        		{% if book.id == book_num %}
+        			<td>
+        				{% set lgss = book.get_logistic_info() %}
+			            {% for lgs in  lgss %}
+			                <span class="label label-info">
+			                    {{ string(lgs.position) }}
+			                </span>
+			            {% endfor %}
+            		</td>
         		{% endif %}
         	{% endfor %}
             <td>{{ book_nums[book_num] }}</td>
