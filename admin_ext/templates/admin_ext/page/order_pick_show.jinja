@@ -1,0 +1,54 @@
+{% extends "admin_ext/base/order_base.jinja" %}
+
+{% block order_active_nav %}#order-nav-pick{% endblock %}
+
+{% block order_main %}
+<div class="container">
+    <table id="tb-data" class="table table-striped table-hover">
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>出版社</th>
+            <th>数量</th>
+        </tr>
+        {% for book_num in book_nums.keys() %}
+        <tr>
+        	{% for book in books %}
+        		{% if book.id == book_num %}
+        			<td>{{ book.name }}</td>
+        		{% endif %}
+        	{% endfor %}
+            {% for book in books %}
+        		{% if book.id == book_num %}
+        			<td>{{ book.author }}</td>
+        		{% endif %}
+        	{% endfor %}
+        	{% for book in books %}
+        		{% if book.id == book_num %}
+        			<td>{{ book.press }}</td>
+        		{% endif %}
+        	{% endfor %}
+            <td>{{ book_nums[book_num] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container container-small">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group btn-wrapper dropup">
+                        <span class="btn btn-primary" onclick="
+                                $.get('{{ url('admin_order_pick_finish', time_stamp=time_stamp) }}', {},function(data, textStatus){ 
+                                    window.location.reload();
+                                });
+                                ">
+                                {{ string('拣货完成') }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

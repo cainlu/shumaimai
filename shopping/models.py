@@ -13,6 +13,7 @@ DEAL_STATUS_CHOICES = (
             (4,u'递送中'),
             (5,u'取消'),
             (6,u'代购送货中'),
+            (7,u'已分拣'),
         )
 
 PAY_WAY_CHOICES = (

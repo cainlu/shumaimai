@@ -1,0 +1,24 @@
+{% extends "admin_ext/base/order_base.jinja" %}
+
+{% block order_active_nav %}#order-nav-pick{% endblock %}
+
+{% block order_main %}
+<div class="container">
+    {% from 'admin_ext/base/base_ctr.jinja' import pegination with context %}
+    <div class="pull-right">
+    {{ pegination(orders) }}
+    </div>
+    <table id="tb-data" class="table table-striped table-hover">
+        <tr>
+            <th>拣货时间</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td><a href='{{ url('admin_order_pick_show', time_stamp=order.time_stamp) }}'>{{ order.time_show }}<a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {{ pegination(orders) }}
+</div>
+
+{% endblock %}

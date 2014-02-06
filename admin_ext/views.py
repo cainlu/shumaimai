@@ -3,6 +3,7 @@
 import os
 import logging
 import csv
+import time
 
 from django.conf import settings
 from django.shortcuts import *
@@ -20,6 +21,7 @@ from shopping.models import *
 from logistic.models import *
 from main.utils import *
 
+time_interval = 43200
 # Create your views here.
 
 DEAL_FIELD_DICT = {
@@ -642,3 +644,64 @@ def logistic_delete(request):
         print e
         msg = {'type':'error','content':u'操作时败。错误 -> '+str(e)}
     return HttpResponse(json.dumps(msg))
+
+@admin_auth_is_superuser_required
+def order_pick_list(request):
+    page = request_get(request, 'page', list_allowed=False)
+    
+    begin_time = '2013-01-01 00:00:00'
+    begin_time = time.strptime(begin_time, '%Y-%m-%d %H:%M:%S')
+    begin_time = int(time.mktime(begin_time))
+    end_time = time.time()
+    time_list = []
+    while True:
+        if begin_time > end_time:
+            break
+        time_list.append({'time_stamp':begin_time, 
+                          'time_show':'%s到%s' % (time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(begin_time)), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(begin_time + time_interval)))})
+        begin_time += time_interval
+    time_list.reverse()
+    order_paginator = Paginator(time_list, settings.DEFAULT_NUM_PER_ADMIN_PAGE)
+    try:
+        orders = order_paginator.page(page)
+    except:
+        orders = order_paginator.page(1)
+    return render_to_response(
+            'admin_ext/page/order_pick_list.jinja', 
+            {
+                 'orders':orders,
+            }, 
+            RequestContext(request)
+        )
+
+@admin_auth_is_superuser_required
+def order_pick_show(request, time_stamp):
+    time_stamp = int(time_stamp)
+    begin_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp))
+    end_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp + time_interval))
+    deals = Deal.objects.filter(submitTime__range=(begin_time, end_time)).exclude(status=7)
+    book_nums = {}
+    for deal in deals:
+        book_deals = Book_Deal.objects.filter(deal_id=deal.id)
+        for book_deal in book_deals:
+            book_nums[book_deal.book_id] = book_nums.get(book_deal.book_id, 0) + 1
+    books = Book.objects.filter(id__in = book_nums.keys())
+    return render_to_response(
+            'admin_ext/page/order_pick_show.jinja', 
+            {
+             'book_nums':book_nums, 'books':books, 'time_stamp':time_stamp,
+            }, 
+            RequestContext(request)
+        )
+    
+@admin_auth_is_superuser_required
+def order_pick_finish(request, time_stamp):
+    time_stamp = int(time_stamp)
+    begin_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp))
+    end_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp + time_interval))
+    deals = Deal.objects.filter(submitTime__range=(begin_time, end_time)).exclude(status=7)
+    for deal in deals:
+        deal.status = 7
+        deal.save()
+    return HttpResponseRedirect('/admin-ext/order/pick/%s/' % time_stamp)
+    

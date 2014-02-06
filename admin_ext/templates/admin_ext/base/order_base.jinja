@@ -23,6 +23,9 @@
         <li id="order-nav-download">
             <a href="{{ url('admin_order_download') }}">{{ string('下载订单') }}</a>
         </li>
+        <li id="order-nav-pick">
+            <a href="{{ url('admin_order_pick_list') }}">{{ string('拣货清单') }}</a>
+        </li>
     </ul>
     {% block order_main %}{% endblock %}
 </div>
